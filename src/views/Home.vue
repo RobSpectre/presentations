@@ -1,6 +1,7 @@
 <template lang="pug">
-  vue-reveal
+  Reveal
     .slides
+      Title
       section
         h1 Working
         h2 what?
@@ -14,12 +15,7 @@
 </template>
 
 <script>
-import VueReveal from '@/components/Reveal.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    VueReveal
-  }
+  name: 'Home'
 }
 </script>
