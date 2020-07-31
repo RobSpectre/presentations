@@ -2,7 +2,7 @@ import Slide from '@/components/base/Slide'
 import { mount } from '@vue/test-utils'
 
 describe('Slide', () => {
-  test('If heading prop included, show on bottom of slide.', () => {
+  test('If heading prop is passed, show on bottom of slide.', () => {
     const wrapper = mount(Slide, {
       propsData: {
         heading: 'Testing'
@@ -13,10 +13,28 @@ describe('Slide', () => {
     expect(heading).toBe('Testing')
   })
 
-  test('If heading prop not included, do not show on bottom of slide.', () => {
+  test('If heading prop is passed, do not show on bottom of slide.', () => {
     const wrapper = mount(Slide)
     const heading = wrapper.find('h1').element
 
     expect(heading).toBe(undefined)
+  })
+
+  test('If class prop is passed, apply to section of slide.', () => {
+    const wrapper = mount(Slide, {
+      propsData: {
+        classes: 'green'
+      }
+    })
+    const classes = wrapper.find('section').classes()
+
+    expect(classes).toEqual(['green'])
+  })
+
+  test('If class prop is not passed, class is not affected.', () => {
+    const wrapper = mount(Slide)
+    const classes = wrapper.find('section').classes()
+
+    expect(classes).toEqual([])
   })
 })

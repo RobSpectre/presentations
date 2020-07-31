@@ -1,5 +1,5 @@
 <template lang="pug">
-  section
+  section(:class='classes')
     div(class='flex items-center h-full')
       div(class='flex-1 flex-col')
         slot
@@ -11,6 +11,9 @@ export default {
   name: 'Slide',
   props: {
     heading: {
+      type: String
+    },
+    classes: {
       type: String
     }
   }
