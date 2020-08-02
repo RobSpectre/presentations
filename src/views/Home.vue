@@ -7,10 +7,16 @@
         h2 working?
       Slide
         h2 No heading.
+      PlayerBoard(:addPlayersAllowed='false')
 </template>
 
 <script>
+import PlayerBoard from '@/components/Players/PlayerBoard.vue'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {
+    PlayerBoard
+  }
 }
 </script>

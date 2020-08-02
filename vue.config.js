@@ -1,4 +1,7 @@
 module.exports = {
+  configureWebpack: (config) => {
+    config.devtool = 'source-map'
+  },
   chainWebpack: config => {
     config.module
       .rule('vue')
