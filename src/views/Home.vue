@@ -7,7 +7,7 @@
         h2 working?
       Slide
         h2 No heading.
-      PlayerBoard(:addPlayersAllowed='false')
+      PlayerBoard
 </template>
 
 <script>

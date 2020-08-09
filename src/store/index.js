@@ -1,8 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-
-Vue.use(Vuex)
 
 const state = {
   game: {
@@ -16,7 +12,7 @@ const state = {
 }
 
 const getters = {
-  teamsWithPlayers (state) {
+  teamsWithPlayers: state => {
     if (state.game.teams === undefined) {
       return state.game.teams
     }
@@ -38,10 +34,10 @@ const getters = {
 
     return teamsWithPlayers
   },
-  getPlayersFromTeam: (state) => (teamName) => {
+  getPlayersFromTeam: state => teamName => {
     return state.game.players.filter(player => teamName === player.team)
   },
-  getPlayersByScore (state) {
+  getPlayersByScore: state => {
     const players = []
     state.game.players.forEach(function (player) {
       players.push(player)
@@ -122,12 +118,12 @@ const mutations = {
 
     state.game.players = newPlayers
   },
-  addTeam (state, name) {
-    if (name.trim() === '') {
+  addTeam (state, payload) {
+    if (payload.name.trim() === '') {
       return
     }
     state.game.teams.push({
-      name: name,
+      name: payload.name,
       score: 0
     })
   },
@@ -173,12 +169,12 @@ const mutations = {
 const actions = {
 }
 
-export default new Vuex.Store({
-  state,
-  getters,
-  mutations,
-  actions,
+export default {
+  state: state,
+  getters: getters,
+  mutations: mutations,
+  actions: actions,
   plugins: [
     createPersistedState({ key: 'hack.party' })
   ]
-})
+}

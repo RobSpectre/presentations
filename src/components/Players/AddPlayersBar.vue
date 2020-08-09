@@ -5,19 +5,24 @@
       .relative.flex-grow(class='focus-within:z-10')
         .absolute.inset-y-0.left-0.pl-3.flex.items-center.pointer-events-none
           UserIcon.h-5.w-5.text-gray-400
-        input.form-input.block.w-full.rounded-none.rounded-l-md.pl-10.transition.ease-in-out.duration-150(class='sm:text-sm sm:leading-5' placeholder='Shrimply Pibbles' v-model='inputName' v-on:keydown.enter='addPlayer(inputName)')
-      button.rounded-r-md(v-if='addPlayersAllowed && !addTeamsAllowed')
+        input.form-input.block.w-full.rounded-none.rounded-l-md.pl-10.transition.ease-in-out.duration-150(class='sm:text-sm sm:leading-5' placeholder='Shrimply Pibbles' v-model='inputName' v-on:keydown.enter='handleAddPlayer(inputName)')
+      button.rounded-r-md(v-if='addPlayersAllowed && !addTeamsAllowed'
+                          v-on:click='handleAddPlayer(inputName)')
         UserAddIcon.h-5.w-5.text-gray-400
-        span.ml-2(v-on:click='addPlayer(player_name)') Add
-      button(v-else-if='addPlayersAllowed')
+        span.ml-2 Add
+      button(v-else-if='addPlayersAllowed'
+             v-on:click='handleAddPlayer(inputName)')
         UserAddIcon.h-5.w-5.text-gray-400
-        span.ml-2(v-on:click='addPlayer(player_name)') Add
-      button.rounded-r-md(v-if='addTeamsAllowed')
+        span.ml-2 Add
+      button.rounded-r-md(v-if='addTeamsAllowed'
+                          v-on:click='handleAddTeam(inputName)')
         UserGroupIcon.h-5.w-5.text-gray-400
-        span.ml-2(v-on:click='addTeam(teamName)') Add Team
+        span.ml-2 Add Team
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 import { UserIcon, UserAddIcon, UserGroupIcon } from '@vue-hero-icons/solid'
 
 export default {
@@ -43,22 +48,23 @@ export default {
     }
   },
   methods: {
-    addPlayer (name) {
+    handleAddPlayer (name) {
       if (name.trim() === '') {
         return
       }
 
-      this.$store.commit('addPlayer', { name: name })
+      this.addPlayer({ name: name })
       this.inputName = ''
     },
-    addTeam (name) {
+    handleAddTeam (name) {
       if (name.trim() === '') {
         return
       }
 
-      this.$store.commit('addTeam', name)
+      this.addTeam({ name: name })
       this.inputName = ''
-    }
+    },
+    ...mapMutations(['addPlayer', 'addTeam'])
   }
 }
 </script>
