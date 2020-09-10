@@ -3,10 +3,10 @@ import { mount, createLocalVue } from '@vue/test-utils'
 
 import AddPlayersBar from '@/components/Players/AddPlayersBar'
 
-import hackPartyStore from '@/store'
+const localVue = createLocalVue()
+localVue.use(Vuex)
 
-const VueWithVuex = createLocalVue()
-VueWithVuex.use(Vuex)
+const store = new Vuex.Store()
 
 describe('AddPlayersBar props', () => {
   test('If addPlayersAllowed prop is true, show button to add player.', () => {
@@ -55,10 +55,12 @@ describe('AddPlayersBar props', () => {
 })
 
 describe('AddPlayersBar UX', () => {
+  beforeEach(() => {
+    store.commit = jest.fn()
+  }),
   test('If Add Player button is clicked with input, player is entered', async () => {
-    const store = new Vuex.Store(hackPartyStore)
     const wrapper = mount(AddPlayersBar, {
-      localVue: VueWithVuex,
+      localVue: localVue,
       store
     })
 
@@ -69,31 +71,24 @@ describe('AddPlayersBar UX', () => {
     const addPlayersButton = wrapper.find('button')
     await addPlayersButton.trigger('click')
 
-    expect(wrapper.vm.$store.state.game.players.length).toEqual(1)
-    expect(wrapper.vm.$store.state.game.players[0].name).toEqual('Rick')
+    expect(wrapper.vm.$store.commit).toHaveBeenCalledWith('addPlayer', { name: 'Rick' })
   }),
   test('If Add Player button is clicked with no input, no player is entered', async () => {
-    const store = new Vuex.Store(hackPartyStore)
     const wrapper = mount(AddPlayersBar, {
-      localVue: VueWithVuex,
+      localVue: localVue,
       store
     })
-
-    const input = wrapper.find('input')
-    input.element.value = ''
-    await input.trigger('input')
 
     debugger
 
     const addPlayersButton = wrapper.find('button')
     await addPlayersButton.trigger('click')
 
-    expect(wrapper.vm.$store.state.game.players.length).toEqual(0)
+    expect(wrapper.vm.$store.commit).not.toHaveBeenCalled()
   }),
   test('If Add Team button is clicked with no input, no team is entered', async () => {
-    const store = new Vuex.Store(hackPartyStore)
     const wrapper = mount(AddPlayersBar, {
-      localVue: VueWithVuex,
+      localVue: localVue,
       store
     })
 
@@ -104,12 +99,11 @@ describe('AddPlayersBar UX', () => {
     const addTeamButton = wrapper.findAll('button').wrappers[1]
     await addTeamButton.trigger('click')
 
-    expect(wrapper.vm.$store.state.game.teams.length).toEqual(0)
+    expect(wrapper.vm.$store.commit).not.toHaveBeenCalled()
   }),
   test('If Add Team button is clicked with input, team is created', async () => {
-    const store = new Vuex.Store(hackPartyStore)
     const wrapper = mount(AddPlayersBar, {
-      localVue: VueWithVuex,
+      localVue: localVue,
       store
     })
 
@@ -120,7 +114,6 @@ describe('AddPlayersBar UX', () => {
     const addTeamButton = wrapper.findAll('button').wrappers[1]
     await addTeamButton.trigger('click')
 
-    expect(wrapper.vm.$store.state.game.teams.length).toEqual(1)
-    expect(wrapper.vm.$store.state.game.teams[0].name).toEqual('Team Superrad')
+    expect(wrapper.vm.$store.commit).toHaveBeenCalledWith('addTeam', { name: 'Team Superrad' })
   })
 })
