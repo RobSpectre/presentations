@@ -1,11 +1,11 @@
 <template lang="pug">
-    section(
-      :data-background-video='background'
-      data-background-color='#000'
-      data-background-video-muted
-      data-background-video-loop
-    )
-      slot
+section(
+  :data-background-video='background'
+  data-background-color='#000'
+  data-background-video-muted
+  data-background-video-loop
+)
+  slot
 </template>
 
 <script>

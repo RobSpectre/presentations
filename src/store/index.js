@@ -1,4 +1,5 @@
-import createPersistedState from 'vuex-persistedstate'
+import { createStore } from 'vuex'
+import VuexPersistence from 'vuex-persist'
 
 const state = {
   game: {
@@ -169,12 +170,23 @@ const mutations = {
 const actions = {
 }
 
-export default {
-  state: state,
-  getters: getters,
-  mutations: mutations,
-  actions: actions,
-  plugins: [
-    createPersistedState({ key: 'hack.party' })
-  ]
+const game = createStore({
+  state () {
+    return state
+  },
+  getters () {
+    return getters
+  },
+  mutations () {
+    return mutations
+  },
+  actions () {
+    return actions
+  }
+})
+
+export default ({ store }) => {
+  new VuexPersistence({
+    storage: window.localStorage
+  }).plugin(game)
 }

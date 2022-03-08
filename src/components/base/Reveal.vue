@@ -1,6 +1,6 @@
 <template lang="pug">
-  .reveal(class='theater' ref='presentation')
-    slot
+.reveal(class='theater' ref='presentation')
+  slot
 </template>
 
 <script>

@@ -1,9 +1,9 @@
 <template lang="pug">
-  section
-    AddPlayersBar(
-      :addPlayersAllowed='addPlayersAllowed'
-      :addTeamsAllowed='addTeamsAllowed'
-    )
+section
+  AddPlayersBar(
+    :addPlayersAllowed='addPlayersAllowed'
+    :addTeamsAllowed='addTeamsAllowed'
+  )
 </template>
 
 <script>

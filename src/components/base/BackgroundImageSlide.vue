@@ -1,8 +1,8 @@
 <template lang="pug">
-  section(
-    :data-background-image='background'
-  )
-    slot
+section(
+  :data-background-image='background'
+)
+  slot
 </template>
 
 <script>
