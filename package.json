@@ -13,6 +13,7 @@
   "dependencies": {
     "@heroicons/vue": "^1.0.5",
     "@tailwindcss/ui": "^0.3.1",
+    "@vue/vue3-jest": "^27.0.0-alpha.4",
     "animate.css": "^4.1.0",
     "core-js": "^3.6.4",
     "eagle.js": "^0.6.1",

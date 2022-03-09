@@ -1,17 +1,11 @@
-import Vuex from 'vuex'
-import { mount, createLocalVue } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 
 import AddPlayersBar from '@/components/Players/AddPlayersBar'
-
-const localVue = createLocalVue()
-localVue.use(Vuex)
-
-const store = new Vuex.Store()
 
 describe('AddPlayersBar props', () => {
   test('If addPlayersAllowed prop is true, show button to add player.', () => {
     const wrapper = mount(AddPlayersBar, {
-      propsData: {
+      props: {
         addPlayersAllowed: true
       }
     })
@@ -20,7 +14,7 @@ describe('AddPlayersBar props', () => {
   }),
   test('If addPlayersAllowed prop is false, do not show button to add player.', () => {
     const wrapper = mount(AddPlayersBar, {
-      propsData: {
+      props: {
         addPlayersAllowed: false
       }
     })
@@ -32,7 +26,7 @@ describe('AddPlayersBar props', () => {
   }),
   test('If addTeamsAllowed is true, show button to add team.', () => {
     const wrapper = mount(AddPlayersBar, {
-      propsData: {
+      props: {
         addTeamsAllowed: true
       }
     })
@@ -41,7 +35,7 @@ describe('AddPlayersBar props', () => {
   }),
   test('If addTeamsAllowed is false, do not show button to add team.', () => {
     const wrapper = mount(AddPlayersBar, {
-      propsData: {
+      props: {
         addTeamsAllowed: false
       }
     })
@@ -55,15 +49,31 @@ describe('AddPlayersBar props', () => {
 })
 
 describe('AddPlayersBar UX', () => {
-  beforeEach(() => {
-    store.commit = jest.fn()
-  }),
-  test('If Add Player button is clicked with input, player is entered', async () => {
-    const wrapper = mount(AddPlayersBar, {
-      localVue: localVue,
-      store
-    })
+  let wrapper
+  let $store
 
+  beforeEach(() => {
+    $store = {
+      state: {
+        players: [],
+        teams: []
+      },
+      commit: jest.fn()
+    }
+
+    wrapper = mount(AddPlayersBar, {
+      props: {
+        addTeamsAllowed: true
+      },
+      global: {
+        mocks: {
+          $store
+        }
+      }
+    })
+  })
+
+  test('If Add Player button is clicked with input, player is entered', async () => {
     const input = wrapper.find('input')
     input.element.value = 'Rick'
     await input.trigger('input')
@@ -71,49 +81,34 @@ describe('AddPlayersBar UX', () => {
     const addPlayersButton = wrapper.find('button')
     await addPlayersButton.trigger('click')
 
-    expect(wrapper.vm.$store.commit).toHaveBeenCalledWith('addPlayer', { name: 'Rick' })
+    expect($store.commit).toHaveBeenCalledWith('addPlayer', { name: 'Rick' })
   }),
   test('If Add Player button is clicked with no input, no player is entered', async () => {
-    const wrapper = mount(AddPlayersBar, {
-      localVue: localVue,
-      store
-    })
-
-    debugger
-
     const addPlayersButton = wrapper.find('button')
     await addPlayersButton.trigger('click')
 
-    expect(wrapper.vm.$store.commit).not.toHaveBeenCalled()
+    expect($store.commit).not.toHaveBeenCalled()
   }),
   test('If Add Team button is clicked with no input, no team is entered', async () => {
-    const wrapper = mount(AddPlayersBar, {
-      localVue: localVue,
-      store
-    })
-
     const input = wrapper.find('input')
     input.element.value = ''
     await input.trigger('input')
 
-    const addTeamButton = wrapper.findAll('button').wrappers[1]
+    debugger
+
+    const addTeamButton = wrapper.findAll('button')[1]
     await addTeamButton.trigger('click')
 
-    expect(wrapper.vm.$store.commit).not.toHaveBeenCalled()
+    expect($store.commit).not.toHaveBeenCalled()
   }),
   test('If Add Team button is clicked with input, team is created', async () => {
-    const wrapper = mount(AddPlayersBar, {
-      localVue: localVue,
-      store
-    })
-
     const input = wrapper.find('input')
     input.element.value = 'Team Superrad'
     await input.trigger('input')
 
-    const addTeamButton = wrapper.findAll('button').wrappers[1]
+    const addTeamButton = wrapper.findAll('button')[1]
     await addTeamButton.trigger('click')
 
-    expect(wrapper.vm.$store.commit).toHaveBeenCalledWith('addTeam', { name: 'Team Superrad' })
+    expect($store.commit).toHaveBeenCalledWith('addTeam', { name: 'Team Superrad' })
   })
 })

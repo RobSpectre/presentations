@@ -13,11 +13,11 @@ describe('Slide', () => {
     expect(heading).toBe('Testing')
   })
 
-  test('If heading prop is passed, do not show on bottom of slide.', () => {
+  test('If heading prop is not passed, do not show on bottom of slide.', () => {
     const wrapper = mount(Slide)
-    const heading = wrapper.find('h1').element
+    const heading = wrapper.find('h1')
 
-    expect(heading).toBe(undefined)
+    expect(heading.exists()).toBe(false)
   })
 
   test('If class prop is passed, apply to section of slide.', () => {
