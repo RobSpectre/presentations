@@ -4,17 +4,20 @@ section
     :addPlayersAllowed='addPlayersAllowed'
     :addTeamsAllowed='addTeamsAllowed'
   )
+  DisplayPlayers
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
 
 import AddPlayersBar from '@/components/Players/AddPlayersBar'
+import DisplayPlayers from '@/components/Players/DisplayPlayers'
 
 export default {
   name: 'PlayerBoard',
   components: {
-    AddPlayersBar
+    AddPlayersBar,
+    DisplayPlayers
   },
   props: {
     addPlayersAllowed: {

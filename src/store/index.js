@@ -13,14 +13,15 @@ const state = {
 }
 
 const getters = {
-  teamsWithPlayers: state => {
+  teamsWithPlayers (state) {
     if (state.game.teams === undefined) {
       return state.game.teams
     }
-    var teamsWithPlayers = []
+
+    const teamsWithPlayersList = []
 
     state.game.teams.forEach(function (team) {
-      var individualScores = []
+      const individualScores = []
 
       team.players = state.game.players.filter(player => team.name === player.team)
       team.players.forEach(function (player) {
@@ -30,15 +31,15 @@ const getters = {
         return a + b
       }, 0)
 
-      teamsWithPlayers.push(team)
+      teamsWithPlayersList.push(team)
     })
 
-    return teamsWithPlayers
+    return teamsWithPlayersList
   },
-  getPlayersFromTeam: state => teamName => {
+  getPlayersFromTeam: (state) => (teamName) => {
     return state.game.players.filter(player => teamName === player.team)
   },
-  getPlayersByScore: state => {
+  getPlayersByScore (state) {
     const players = []
     state.game.players.forEach(function (player) {
       players.push(player)
@@ -170,23 +171,14 @@ const mutations = {
 const actions = {
 }
 
-const game = createStore({
-  state () {
-    return state
-  },
-  getters () {
-    return getters
-  },
-  mutations () {
-    return mutations
-  },
-  actions () {
-    return actions
-  }
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
 })
 
-export default ({ store }) => {
-  new VuexPersistence({
-    storage: window.localStorage
-  }).plugin(game)
-}
+export default createStore({
+  state,
+  mutations,
+  actions,
+  getters,
+  plugins: [vuexLocal.plugin]
+})
