@@ -7,8 +7,8 @@
           | Players
   draggable(v-model='players' item-key='index')
     template(v-slot:item='{ element }')
-      .bg-white
-        span.transition.duration-150.ease-in-out(class='hover:bg-gray-50 focus:outline-none focus:bg-gray-50')
+      span.transition.duration-150.ease-in-out(class='hover:bg-gray-50 focus:outline-none focus:bg-gray-50')
+        .bg-white
           .px-6.py-6.flex.items-center
             .flex-1(class='sm:flex sm:items-center sm:justify-between')
               .text-5xl.leading-5.font-medium
