@@ -14,9 +14,9 @@ section
       .max-w-7xl.mx-auto.px-4(class='sm:px-6 md:px-8')
         .py-4.grid.grid-rows-3.grid-flow-col.gap-4
           .row-span-1.col-span-2.border-4.border-dashed.border-gray-200.rounded-lg.w-.cluse
-            h4.fragment {{ hint1 }}
-            h4.fragment {{ hint2 }}
-            h4.fragment {{ hint3 }}
+            h3.fragment {{ hint1 }}
+            h3.fragment {{ hint2 }}
+            h3.fragment {{ hint3 }}
           .row-span-2.col-span-2
             img.fragment.m-0(style='margin: auto;' :src='image')
   h1.fragment {{ celebrity }}

@@ -8,7 +8,6 @@ module.exports = {
       .use('vue-loader')
       .loader('vue-loader')
       .tap(options => {
-        console.log(options)
         options.transformAssetUrls = {
           video: ['src', 'poster'],
           source: 'src',
@@ -17,6 +16,8 @@ module.exports = {
           use: ['xlink:href', 'href'],
           section: ['data-background-video', 'data-background-image']
         }
+
+        console.log(options)
 
         return options
       })
