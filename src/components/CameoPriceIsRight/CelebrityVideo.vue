@@ -15,7 +15,7 @@ section
     main.flex-1.relative.z-0.overflow-y-auto.py-6(class='focus:outline-none' tabindex='0')
       .max-w-7xl.mx-auto.px-4(class='sm:px-6 md:px-8')
         .py-4
-          video.mx-auto(controls='' style='height: 1200px;')
+          video.mx-auto(controls='')
             source(:src='video' type='video/mp4')
   h1 {{ celebrity }}
 </template>
@@ -32,6 +32,7 @@ export default {
   computed: mapState(['game']),
   methods: {
     playVideo () {
+      console.log('Playing!')
       const video = this.$refs.video
 
       video.play()

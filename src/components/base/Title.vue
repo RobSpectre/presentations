@@ -41,7 +41,7 @@ export default {
     },
     heading: {
       type: String,
-      default: require('@/assets/images/cameo_price_is_right.png')
+      default: require('@/assets/images/hackparty_logo.png')
     },
     headingType: {
       type: String,

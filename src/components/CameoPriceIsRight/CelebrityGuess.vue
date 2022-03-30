@@ -115,10 +115,10 @@ export default {
         }
       })
 
-      if (parseInt(bestGuess) === this.price) {
+      if (bestGuess === this.price) {
         this.increasePlayerScore({
           playerName: winner,
-          value: (parseInt(this.prize) * 2)
+          value: parseInt(this.prize) * 2
         })
       } else {
         this.increasePlayerScore({
