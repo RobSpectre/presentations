@@ -18,6 +18,7 @@
     "animate.css": "^4.1.0",
     "core-js": "^3.6.4",
     "eagle.js": "^0.6.1",
+    "node-sass": "^7.0.1",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.0.0",
     "reveal.js": "^4.3.0",
