@@ -14,7 +14,7 @@ import { mapState } from 'vuex'
 
 import CelebrityIntro from './CelebrityIntro.vue'
 import CelebrityVideo from './CelebrityVideo.vue'
-import CelebrityGuess from './/CelebrityGuess.vue'
+import CelebrityGuess from './CelebrityGuess.vue'
 
 export default {
   name: 'CameoPriceIsRightRound',

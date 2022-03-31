@@ -11,7 +11,7 @@ export default {
   props: {
     background: {
       type: String,
-      default: require('@/assets/images/party_hard.gif')
+      default: '@/assets/images/party_hard.gif'
     }
   }
 }
