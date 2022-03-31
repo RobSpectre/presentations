@@ -295,7 +295,7 @@ import VideoSlide from '@/components/base/VideoSlide.vue'
 
 import PlayerBoard from '@/components/Players/PlayerBoard.vue'
 
-import CameoPriceIsRightRound from '@/components/CameoPriceIsRight/CameoPriceIsRightRound'
+import CameoPriceIsRightRound from '@/components/CameoPriceIsRight/CameoPriceIsRightRound.vue'
 
 export default {
   name: 'Home',

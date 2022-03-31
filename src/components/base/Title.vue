@@ -33,7 +33,7 @@ export default {
   props: {
     background: {
       type: String,
-      default: require('@/assets/video/intro.mp4')
+      default: '@/assets/video/intro.mp4'
     },
     backgroundType: {
       type: String,
@@ -41,7 +41,7 @@ export default {
     },
     heading: {
       type: String,
-      default: require('@/assets/images/cameo_price_is_right.png')
+      default: '@/assets/images/cameo_price_is_right.png'
     },
     headingType: {
       type: String,

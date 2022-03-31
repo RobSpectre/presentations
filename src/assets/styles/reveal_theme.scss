@@ -1,11 +1,10 @@
 @import 'reveal_mixins';
 @import 'reveal_settings';
-
-@import "@/../node_modules/tailwindcss/base";
-@import "@/../node_modules/tailwindcss/components";
-@import "@/../node_modules/tailwindcss/utilities";
-
 @import url('/node_modules/reveal.js/dist/theme/fonts/source-sans-pro/source-sans-pro.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 $childsafeGreen: #00bc70;
 $childsafeBlue: #00b1e1;

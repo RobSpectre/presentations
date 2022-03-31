@@ -10,8 +10,8 @@ section
 <script>
 import { mapState, mapGetters } from 'vuex'
 
-import AddPlayersBar from '@/components/Players/AddPlayersBar'
-import DisplayPlayers from '@/components/Players/DisplayPlayers'
+import AddPlayersBar from '@/components/Players/AddPlayersBar.vue'
+import DisplayPlayers from '@/components/Players/DisplayPlayers.vue'
 
 export default {
   name: 'PlayerBoard',
