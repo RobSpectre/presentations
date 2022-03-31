@@ -1,4 +1,4 @@
 <template lang="pug">
-  .about
-    h1 This is an about page, snacky.
+.about
+  h1 This is an about page, snacky.
 </template>
