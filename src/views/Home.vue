@@ -2,9 +2,12 @@
 Reveal
   .slides
     Title
-    VideoSlide(background='http://localhost:8000/price_is_right.mp4')
+    Title(
+      background='/video/price_is_right.mp4'
+      heading='/images/cameo_price_is_right.png'
+    )
     VideoSlide(
-      background='http://localhost:8000/get_what_you_give.mp4'
+      background='/video/get_what_you_give.mp4'
       :muted='false')
     BackgroundImageSlide(background='https://www.howtogeek.com/wp-content/uploads/2020/06/cameo-grid.jpg?height=200p&trim=2,2,2,2')
       h1 Cameo
@@ -19,7 +22,7 @@ Reveal
     Slide(class='darkgray')
       h2 Let's Go!
     VideoSlide(
-      background='http://localhost:8000/vanilla_ice.mp4'
+      background='/video/vanilla_ice.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -33,7 +36,7 @@ Reveal
       image='https://www.queenforever.com.au/wp-content/uploads/2017/09/vanilla-ice-e1479823884816.jpg'
       )
     VideoSlide(
-      background='http://localhost:8000/toto.mp4'
+      background='/video/toto.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -47,7 +50,7 @@ Reveal
       image='https://www.musicinstrumentnews.co.uk/wp-content/uploads/2019/12/IMG_2925.jpeg'
       )
     VideoSlide(
-      background='http://localhost:8000/wheatus.mp4'
+      background='/video/wheatus.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -61,7 +64,7 @@ Reveal
       image='https://www.cambridgeindependent.co.uk/_media/img/4MO65P1X9QX3JE6T0M5E.jpg'
     )
     VideoSlide(
-      background='http://localhost:8000/everclear.mp4'
+      background='/video/everclear.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -75,7 +78,7 @@ Reveal
       image='https://static.spin.com/files/2020/05/Art56159_v1-2-1588613278-1588792137.jpg'
     )
     VideoSlide(
-      background='http://localhost:8000/crucialtaunt.mp4'
+      background='/video/crucialtaunt.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -89,7 +92,7 @@ Reveal
       image='https://video-images.vice.com/test-uploads/articles/5e5fc40e7a7c2c0098f93d08/lede/1583337059242-tia-carrere.jpeg?crop=1xw:0.7582xh;0xw,0xh'
     )
     VideoSlide(
-      background='http://localhost:8000/lisaloeb.mp4'
+      background='/video/lisaloeb.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -104,12 +107,12 @@ Reveal
     )
     PlayerBoard
     VideoSlide(
-      background='http://localhost:8000/musicvideos.mp4'
+      background='/video/musicvideos.mp4'
       :muted='false'
     )
     PlayerBoard
     VideoSlide(
-      background='http://localhost:8000/bonethugs_cut.mp4'
+      background='/video/bonethugs_cut.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -123,7 +126,7 @@ Reveal
       image='https://m.media-amazon.com/images/M/MV5BNTVhMGRlMTEtZjFjYS00Y2IwLWIyOTMtZDY3MTJlNmZmNmU0XkEyXkFqcGdeQXVyMjUyNDk2ODc@._V1_.jpg'
     )
     VideoSlide(
-      background='http://localhost:8000/onyx.mp4'
+      background='/video/onyx.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -137,7 +140,7 @@ Reveal
       image='https://i.ytimg.com/vi/YOq3S0VhHRQ/maxresdefault.jpg'
     )
     VideoSlide(
-      background='http://localhost:8000/montelljordan.mp4'
+      background='/video/montelljordan.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -151,7 +154,7 @@ Reveal
       image='https://upload.wikimedia.org/wikipedia/commons/5/5a/Montell_Jordan_1995.jpg'
     )
     VideoSlide(
-      background='http://localhost:8000/cypresshill.mp4'
+      background='/video/cypresshill.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -165,7 +168,7 @@ Reveal
       image='https://www.latinousa.org/wp-content/uploads/2019/07/sencypress.png'
     )
     VideoSlide(
-      background='http://localhost:8000/sugarhill.mp4'
+      background='/video/sugarhill.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -179,7 +182,7 @@ Reveal
       image='https://richmondmagazine.com/downloads/26582/download/MasterGee7.JPG?cb=037d8a706f783989f26855a57e4e9967'
     )
     VideoSlide(
-      background='http://localhost:8000/kidnplay.mp4'
+      background='/video/kidnplay.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -194,12 +197,12 @@ Reveal
     )
     PlayerBoard
     VideoSlide(
-      background='http://localhost:8000/oneders.mp4'
+      background='/video/oneders.mp4'
       :muted='false'
     )
     PlayerBoard
     VideoSlide(
-      background='http://localhost:8000/googoodolls.mp4'
+      background='/video/googoodolls.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -213,7 +216,7 @@ Reveal
       image='https://www.gannett-cdn.com/presto/2019/07/25/PCIN/55e7403e-d9f9-4072-81af-ba4158630ea1-072419TrainGooGooDollsAllenStone11.JPG'
     )
     VideoSlide(
-      background='http://localhost:8000/sugarray.mp4'
+      background='/video/sugarray.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -227,7 +230,7 @@ Reveal
       image='https://media.vanityfair.com/photos/61113bbe1a2290bc63fd98bd/master/w_2560%2Cc_limit/1163244470'
     )
     VideoSlide(
-      background='http://localhost:8000/blackdahlia.mp4'
+      background='/video/blackdahlia.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -241,7 +244,7 @@ Reveal
       image='https://www.metalblade.com/us/mainpics/the-black-dahlia-murder.jpg'
     )
     VideoSlide(
-      background='http://localhost:8000/deesnider_cut.mp4'
+      background='/video/deesnider_cut.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -255,7 +258,7 @@ Reveal
       image='https://www.weareclassicrockers.com/sites/classicrockers.rock.tools/files/2020-09/Dee%20Snider%20is%20MAD%20GettyImages-1220011041.jpg'
     )
     VideoSlide(
-      background='http://localhost:8000/devo.mp4'
+      background='/video/devo.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(
@@ -269,7 +272,7 @@ Reveal
       image='https://www.rollingstone.com/wp-content/uploads/2021/03/devo-day-akron.jpg'
     )
     VideoSlide(
-      background='http://localhost:8000/lessthanjake.mp4'
+      background='/video/lessthanjake.mp4'
       :muted='false'
     )
     CameoPriceIsRightRound(

@@ -33,7 +33,7 @@ export default {
   props: {
     background: {
       type: String,
-      default: '@/assets/video/intro.mp4'
+      default: '/video/intro.mp4'
     },
     backgroundType: {
       type: String,
@@ -41,7 +41,7 @@ export default {
     },
     heading: {
       type: String,
-      default: '@/assets/images/cameo_price_is_right.png'
+      default: '/images/hackparty_logo.png'
     },
     headingType: {
       type: String,

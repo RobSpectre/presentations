@@ -6,6 +6,7 @@ section(
   data-background-video-muted
   data-background-video-loop
 )
+  slot
 section(
   v-else
   :data-background-video='background'
