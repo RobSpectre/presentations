@@ -14,7 +14,6 @@
     "@heroicons/vue": "^1.0.5",
     "@vue/vue3-jest": "^27.0.0-alpha.4",
     "animate.css": "^4.1.0",
-    "eagle.js": "^0.6.1",
     "node-sass": "^7.0.1",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.0.0",

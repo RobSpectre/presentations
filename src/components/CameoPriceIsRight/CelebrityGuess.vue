@@ -1,17 +1,7 @@
 <template lang='pug'>
 section
   .h-screen.flex.overflow-hidden
-    // Static sidebar for desktop
-    .hidden(class='md:flex md:flex-shrink-0')
-      .flex.flex-col.w-64
-        .flex.items-center.h-16.flex-shrink-0.px-4.green
-          img.h-8.w-auto(src='@/assets/images/cameo_price_is_right.png')
-        .h-0.flex-1.flex.flex-col.overflow-y-auto
-          // Sidebar component, swap this element with another sidebar if you like
-          nav.flex-1.px-2.py-4.bg-gray-800
-            .mt-1.group.flex.items-center.px-2.py-2.text-base.leading-6.font-medium.rounded-md.text-gray-300.transition.ease-in-out.duration-150(v-for='guess in guessesByPrice' :key='guess.playerName' class='hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700')
-              .font-semibold.text-3xl.w-48 {{ guess.playerName }}
-              .inline-flex.items-center.px-3.rounded-full.text-3xl.text-white.font-medium.leading-5.green(class='py-2') ${{ guess.guess }}
+    PlayersSidebar(:players='players')
     .relative.mt-12.mx-auto(v-if='!complete')
       .flex.flex-col.mx-32.rounded-lg.shadow-lg.overflow-hidden.text-left
         .flex-shrink-0
@@ -55,8 +45,13 @@ section
 /* eslint vue/no-side-effects-in-computed-properties: "off" */
 import { mapState, mapMutations } from 'vuex'
 
+import PlayersSidebar from '@/components/Players/PlayersSidebar.vue'
+
 export default {
   name: 'CelebrityGuess',
+  components: {
+    PlayersSidebar
+  },
   props: {
     celebrity: String,
     image: String,
@@ -85,6 +80,16 @@ export default {
       } else {
         return ''
       }
+    },
+    players () {
+      const players = this.guessesByPrice
+
+      players.forEach((player) => {
+        player.name = player.playerName
+        player.value = '$' + player.guess
+      })
+
+      return players
     },
     ...mapState(['game'])
   },
@@ -127,7 +132,7 @@ export default {
         })
       }
 
-      const audio = new Audio(require('@/assets/sounds/fanfare.mp3'))
+      const audio = new Audio('/sounds/fanfare.mp3')
       audio.volume = 0.2
       audio.play()
 
