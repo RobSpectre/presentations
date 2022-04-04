@@ -13,27 +13,39 @@
             .flex-1(class='sm:flex sm:items-center sm:justify-between')
               .text-5xl.leading-5.font-medium
                 | {{ element.name }}
-              .mt-1(class='sm:mt-0')
-                .inline-flex.items-center.p-2.rounded-full.text-4xl.text-white.font-semibold.leading-5.green
+              .flex.flex-row.mt-1(class='sm:mt-0')
+                .flex.flex-col.items-center.justify-center
+                  .h-5.w-5.text-slate-400(
+                      class='hover:text-slate-700'
+                      v-on:click='incrementPlayerScore(element.name)'
+                    )
+                    ArrowNarrowUpIcon
+                  .h-5.w-5.text-slate-400(
+                      class='hover:text-slate-700'
+                      v-on:click='decrementPlayerScore(element.name)'
+                    )
+                    ArrowNarrowDownIcon
+                .inline-flex.items-center.px-2.py-4.rounded-full.text-4xl.text-white.font-semibold.leading-5.green
                   | {{ element.score }}
             .ml-5.flex-shrink-0
-              span(v-on:click='removePlayer(element.name)')
-                svg.-ml-1.mr-2.h-5.w-5.text-gray-400(fill='currentColor' viewbox='0 0 20 20')
-                  path(d='M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z')
+              div(v-on:click='removePlayer(element.name)')
+                TrashIcon.h-10.w-10.text-slate-400(class='hover:text-slate-700')
 </template>
-
-<style lang="scss" scoped>
-</style>
 
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
+
+import { TrashIcon, ArrowNarrowUpIcon, ArrowNarrowDownIcon } from '@heroicons/vue/solid'
 
 import draggable from 'vuedraggable'
 
 export default {
   name: 'DisplayPlayers',
   components: {
-    draggable
+    draggable,
+    TrashIcon,
+    ArrowNarrowUpIcon,
+    ArrowNarrowDownIcon
   },
   computed: {
     ...mapState(['game']),
@@ -64,7 +76,24 @@ export default {
       var player = this.game.players[playerIndex]
       return player
     },
-    ...mapMutations(['addPlayer', 'removePlayer', 'changeAttributeOfPlayer'])
+    incrementPlayerScore (playerName) {
+      this.increasePlayerScore({
+        playerName: playerName,
+        value: 1
+      })
+    },
+    decrementPlayerScore (playerName) {
+      this.increasePlayerScore({
+        playerName: playerName,
+        value: -1
+      })
+    },
+    ...mapMutations([
+      'addPlayer',
+      'removePlayer',
+      'changeAttributeOfPlayer',
+      'increasePlayerScore'
+    ])
   }
 }
 </script>
