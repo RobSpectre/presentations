@@ -37,18 +37,6 @@ $heading2Size: 2.3em;
 $heading3Size: 1.9em;
 $heading4Size: 1.0em;
 
-section.has-light-background {
-	&, h1, h2, h3, h4, h5, h6 {
-		color: $mainColor;
-	}
-}
-
-section.has-dark-background {
-	&, h1, h2, h3, h4, h5, h6 {
-		color: #fff;
-	}
-}
-
 @import 'reveal_base';
 
 .reveal .green {
@@ -96,11 +84,6 @@ section.has-dark-background {
     box-shadow: none !important;
 }
 
-.reveal .title h3 {
-    font-size: 1.6em;
-    margin-bottom: -0.1em;
-}
-
 .reveal .bio {
     margin-top: 1em;
     margin-bottom: 0.5em;
@@ -108,11 +91,6 @@ section.has-dark-background {
 	background: rgba(255,255,255,0.9);
 	border: 4px solid $mainColor;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.reveal .bio h3, .reveal .bio h4 {
-    color: $mainColor;
-    text-transform: none;
 }
 
 .reveal .headline {
@@ -153,25 +131,6 @@ html.img-bottom div.slide-background.present {
 
 html.img-top div.slide-background.present {
   background-position: top;
-}
-
-.title h3 {
-  text-align: right;
-  padding: 0.25em 0.5em 0.25em 0.5em;
-  float: right;
-  clear: right;
-}
-
-.intro .title h3 {
-  background-color: $childsafeGreen;
-  color: $backgroundColor;
-  visibility: hidden;
-}
-
-.title .title h3 {
-  background-color: $backgroundColor;
-  color: $childsafeBlack;
-  margin-top: -0.1em;
 }
 
 .animated {
