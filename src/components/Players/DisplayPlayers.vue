@@ -14,17 +14,7 @@
               .text-5xl.leading-5.font-medium
                 | {{ element.name }}
               .flex.flex-row.mt-1(class='sm:mt-0')
-                .flex.flex-col.items-center.justify-center
-                  .h-5.w-5.text-slate-400(
-                      class='hover:text-slate-700'
-                      v-on:click='incrementPlayerScore(element.name)'
-                    )
-                    ArrowNarrowUpIcon
-                  .h-5.w-5.text-slate-400(
-                      class='hover:text-slate-700'
-                      v-on:click='decrementPlayerScore(element.name)'
-                    )
-                    ArrowNarrowDownIcon
+                PointsController(:playerName='element.name')
                 .inline-flex.items-center.px-2.py-4.rounded-full.text-4xl.text-white.font-semibold.leading-5.green
                   | {{ element.score }}
             .ml-5.flex-shrink-0
@@ -35,17 +25,18 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 
-import { TrashIcon, ArrowNarrowUpIcon, ArrowNarrowDownIcon } from '@heroicons/vue/solid'
+import { TrashIcon } from '@heroicons/vue/solid'
 
 import draggable from 'vuedraggable'
+
+import PointsController from '@/components/Players/PointsController.vue'
 
 export default {
   name: 'DisplayPlayers',
   components: {
     draggable,
     TrashIcon,
-    ArrowNarrowUpIcon,
-    ArrowNarrowDownIcon
+    PointsController
   },
   computed: {
     ...mapState(['game']),
@@ -72,27 +63,9 @@ export default {
         }
       }
     },
-    getChildPayload (playerIndex) {
-      var player = this.game.players[playerIndex]
-      return player
-    },
-    incrementPlayerScore (playerName) {
-      this.increasePlayerScore({
-        playerName: playerName,
-        value: 1
-      })
-    },
-    decrementPlayerScore (playerName) {
-      this.increasePlayerScore({
-        playerName: playerName,
-        value: -1
-      })
-    },
     ...mapMutations([
       'addPlayer',
-      'removePlayer',
-      'changeAttributeOfPlayer',
-      'increasePlayerScore'
+      'removePlayer'
     ])
   }
 }

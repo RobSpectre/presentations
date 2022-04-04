@@ -7,12 +7,18 @@
       nav.flex-1.px-2.py-4.bg-gray-800
         .mt-1.group.flex.items-center.px-2.py-2.text-base.leading-6.font-medium.rounded-md.text-white.transition.ease-in-out.duration-150(v-for='player in players' :key='player.name' class='hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700')
           .font-semibold.text-3xl.w-48 {{ player.name }}
+          PointsController(:playerName='player.name')
           .inline-flex.items-center.px-3.rounded-full.text-sm.font-medium.leading-5.text-3xl.green(class='py-2') {{ player.value }}
 </template>
 
 <script>
+import PointsController from '@/components/Players/PointsController.vue'
+
 export default {
   name: 'PlayersSidebar',
+  components: {
+    PointsController
+  },
   props: [
     'players'
   ]
