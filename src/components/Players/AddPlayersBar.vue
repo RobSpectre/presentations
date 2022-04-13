@@ -21,7 +21,8 @@ div
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapActions } from 'pinia'
+import { useGameStore } from '@/store'
 
 import { UserIcon, UserAddIcon, UserGroupIcon } from '@heroicons/vue/solid'
 
@@ -53,7 +54,7 @@ export default {
         return
       }
 
-      this.addPlayer({ name: name })
+      this.addPlayer(name)
       this.inputName = ''
     },
     handleAddTeam (name) {
@@ -61,10 +62,10 @@ export default {
         return
       }
 
-      this.addTeam({ name: name })
+      this.addTeam(name)
       this.inputName = ''
     },
-    ...mapMutations(['addPlayer', 'addTeam'])
+    ...mapActions(useGameStore, ['addPlayer', 'addTeam'])
   }
 }
 </script>

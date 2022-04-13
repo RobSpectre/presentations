@@ -10,7 +10,8 @@ GameSlide
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'pinia'
+import { useGameStore } from '@/store'
 
 import GameSlide from '@/components/base/GameSlide.vue'
 import GameContent from '@/components/base/GameContent.vue'
@@ -28,7 +29,7 @@ export default {
     'video'
   ],
   computed: {
-    ...mapGetters(['getPlayersByScore']),
+    ...mapGetters(useGameStore, ['getPlayersByScore']),
     players () {
       const players = this.getPlayersByScore
 
@@ -37,18 +38,6 @@ export default {
       })
 
       return players
-    }
-  },
-  methods: {
-    playVideo () {
-      const video = this.$refs.video
-
-      video.play()
-    },
-    pauseVideo () {
-      const video = this.$refs.video
-
-      video.pause()
     }
   }
 }

@@ -8,8 +8,6 @@ section
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
-
 import AddPlayersBar from '@/components/Players/AddPlayersBar.vue'
 import DisplayPlayers from '@/components/Players/DisplayPlayers.vue'
 
@@ -28,10 +26,6 @@ export default {
       type: Boolean,
       default: true
     }
-  },
-  computed: {
-    ...mapState(['game', 'sync']),
-    ...mapGetters(['teamsWithPlayers'])
   }
 }
 </script>

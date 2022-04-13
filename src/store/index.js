@@ -1,23 +1,20 @@
-import { createStore } from 'vuex'
-import VuexPersistence from 'vuex-persist'
+import { defineStore } from 'pinia'
 
-const state = {
-  game: {
-    players: [],
-    teams: [],
-    rounds: [],
-    teamCounter: 0,
-    playerIndex: 0,
-    playerButton: 0
+function state () {
+  return {
+    game: {
+      players: [],
+      teams: [],
+      rounds: [],
+      teamCounter: 0,
+      playerIndex: 0,
+      playerButton: 0
+    }
   }
 }
 
 const getters = {
   teamsWithPlayers (state) {
-    if (state.game.teams === undefined) {
-      return state.game.teams
-    }
-
     const teamsWithPlayersList = []
 
     state.game.teams.forEach(function (team) {
@@ -48,69 +45,79 @@ const getters = {
   }
 }
 
-const mutations = {
-  addPlayer (state, payload) {
-    if (payload.name.trim() === '') {
+const actions = {
+  addPlayer (name, index) {
+    if (name.trim() === '') {
       return
     }
-    if (state.game.teams.length > 0) {
-      if (state.game.teamCounter > state.game.teams.length - 1) {
-        state.game.teamCounter = 0
+
+    if (this.game.teams.length > 0) {
+      if (this.game.teamCounter >= this.game.teams.length) {
+        this.game.teamCounter = 0
+      }
+
+      let teamIndex = 0
+
+      const teamName = this.game.teams[this.game.teamCounter].name
+      const playersFromTeam = this.getPlayersFromTeam(teamName)
+
+      if (playersFromTeam.length > 0) {
+        teamIndex = playersFromTeam.length
       }
 
       const player = {
-        index: state.game.teams[state.game.teamCounter].players.length,
-        name: payload.name,
+        index: teamIndex,
+        name: name,
         score: 0,
-        team: state.game.teams[state.game.teamCounter].name
+        team: this.game.teams[this.game.teamCounter].name
       }
 
-      if (payload.index) {
-        state.game.players.splice(payload.index, 0, player)
+      if (index === undefined) {
+        this.game.players.push(player)
       } else {
-        state.game.players.push(player)
+        this.game.players.splice(index, 0, player)
       }
 
-      state.game.teamCounter++
+      this.game.teamCounter++
     } else {
-      state.game.teamCounter = 0
+      this.game.teamCounter = 0
 
       const player = {
-        index: state.game.players.length,
-        name: payload.name,
+        index: this.game.players.length,
+        name: name,
         score: 0,
         team: undefined
       }
 
-      if (payload.index === undefined) {
-        state.game.players.push(player)
+      if (index === undefined) {
+        this.game.players.push(player)
       } else {
-        player.index = payload.index
-        state.game.players.splice(payload.index, 0, player)
+        player.index = index
+        this.game.players.splice(index, 0, player)
       }
     }
   },
-  removePlayer (state, name) {
-    state.game.players = state.game.players.filter(player => name !== player.name)
+  removePlayer (name) {
+    this.game.players = this.game.players.filter(player => name !== player.name)
   },
-  changeAttributeOfPlayer (state, payload) {
+  changeAttributeOfPlayer (name, attribute, value) {
     const newPlayers = []
 
-    state.game.players.forEach(function (player) {
-      if (player.name === payload.player_name) {
-        player[payload.attribute] = payload.value
+    this.game.players.forEach((player) => {
+      if (player.name === name) {
+        player[attribute] = value
       }
       newPlayers.push(player)
     })
 
-    state.game.players = newPlayers
+    this.game.players = newPlayers
   },
-  changeAttributesOfPlayer (state, payload) {
+  changeAttributesOfPlayer (name, attributes) {
     var newPlayers = []
 
-    state.game.players.forEach(function (player) {
-      if (player.name === payload.playerName) {
-        payload.attributes.forEach(function (attribute) {
+    this.game.players.forEach((player) => {
+      if (player.name === name) {
+        attributes.forEach((attribute) => {
           player[attribute.attribute] = attribute.value
         })
       }
@@ -118,67 +125,59 @@ const mutations = {
       newPlayers.push(player)
     })
 
-    state.game.players = newPlayers
+    this.game.players = newPlayers
   },
-  addTeam (state, payload) {
-    if (payload.name.trim() === '') {
+  addTeam (name) {
+    if (name.trim() === '') {
       return
     }
-    state.game.teams.push({
-      name: payload.name,
-      score: 0
+    this.game.teams.push({
+      name: name
     })
   },
-  removeTeam (state, name) {
-    state.game.teams = state.game.teams.filter(team => name !== team.name)
+  removeTeam (name) {
+    this.game.teams = this.game.teams.filter(team => name !== team.name)
 
-    state.game.players = state.game.players.filter(player => name !== player.team)
-
-    if (state.game.teams === undefined) {
-      state.game.teams = []
-    }
+    this.game.players = this.game.players.filter(player => name !== player.team)
   },
-  increasePlayerScore (state, payload) {
+  increasePlayerScore (name, value) {
     var newPlayers = []
 
-    state.game.players.forEach(function (player) {
-      if (player.name === payload.playerName) {
-        player.score = player.score + payload.value
+    if (value === undefined) {
+      value = 1
+    }
+
+    this.game.players.forEach((player) => {
+      if (player.name === name) {
+        player.score = player.score + value
       }
       newPlayers.push(player)
     })
 
-    state.game.players = newPlayers
+    this.game.players = newPlayers
   },
-  increasePlayerButton (state) {
-    state.game.playerButton++
+  increasePlayerButton () {
+    this.game.playerButton++
 
-    if (state.game.playerButton >= state.game.players.length) {
-      state.game.playerButton = 0
+    if (this.game.playerButton >= this.game.players.length) {
+      this.game.playerButton = 0
     }
 
-    state.game.playerIndex = state.game.playerButton
+    this.game.playerIndex = this.game.playerButton
   },
-  increasePlayerIndex (state) {
-    state.game.playerIndex++
+  increasePlayerIndex () {
+    this.game.playerIndex++
 
-    if (state.game.playerIndex >= state.game.players.length) {
-      state.game.playerIndex = 0
+    if (this.game.playerIndex >= this.game.players.length) {
+      this.game.playerIndex = 0
     }
   }
 }
 
-const actions = {
-}
-
-const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
-})
-
-export default createStore({
-  state,
-  mutations,
-  actions,
-  getters,
-  plugins: [vuexLocal.plugin]
+export const useGameStore = defineStore({
+  id: 'hack.party game board',
+  state: state,
+  getters: getters,
+  actions: actions,
+  persist: true
 })

@@ -10,8 +10,6 @@ celebrity-guess(
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 import CelebrityIntro from './CelebrityIntro.vue'
 import CelebrityVideo from './CelebrityVideo.vue'
 import CelebrityGuess from './CelebrityGuess.vue'
@@ -32,7 +30,6 @@ export default {
     image: String,
     price: Number,
     prize: Number
-  },
-  computed: mapState(['game'])
+  }
 }
 </script>

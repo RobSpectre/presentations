@@ -1,11 +1,11 @@
 <template lang='pug'>
 .flex.flex-col.items-center.justify-center
-  .h-5.w-5(
+  .h-5.w-5.up-arrow(
     :class="darkBackground ? 'dark' : 'light'"
     v-on:click='incrementPlayerScore(playerName)'
   )
     ArrowNarrowUpIcon
-  .h-5.w-5(
+  .h-5.w-5.down-arrow(
     :class="darkBackground ? 'dark' : 'light'"
     v-on:click='decrementPlayerScore(playerName)'
   )
@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapActions } from 'pinia'
+import { useGameStore } from '@/store'
 
 import { ArrowNarrowUpIcon, ArrowNarrowDownIcon } from '@heroicons/vue/solid'
 
@@ -32,18 +33,12 @@ export default {
   },
   methods: {
     incrementPlayerScore (playerName) {
-      this.increasePlayerScore({
-        playerName: this.playerName,
-        value: 1
-      })
+      this.increasePlayerScore(this.playerName)
     },
     decrementPlayerScore (playerName) {
-      this.increasePlayerScore({
-        playerName: this.playerName,
-        value: -1
-      })
+      this.increasePlayerScore(this.playerName, -1)
     },
-    ...mapMutations(['increasePlayerScore'])
+    ...mapActions(useGameStore, ['increasePlayerScore'])
   }
 }
 </script>

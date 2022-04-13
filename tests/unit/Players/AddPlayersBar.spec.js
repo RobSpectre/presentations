@@ -1,5 +1,9 @@
 import { mount } from '@vue/test-utils'
 
+import { createTestingPinia } from '@pinia/testing'
+
+import { useGameStore } from '@/store'
+
 import AddPlayersBar from '@/components/Players/AddPlayersBar'
 
 describe('AddPlayersBar props', () => {
@@ -50,27 +54,19 @@ describe('AddPlayersBar props', () => {
 
 describe('AddPlayersBar UX', () => {
   let wrapper
-  let $store
+  let store
 
   beforeEach(() => {
-    $store = {
-      state: {
-        players: [],
-        teams: []
-      },
-      commit: jest.fn()
-    }
-
     wrapper = mount(AddPlayersBar, {
       props: {
         addTeamsAllowed: true
       },
       global: {
-        mocks: {
-          $store
-        }
+        plugins: [createTestingPinia()]
       }
     })
+
+    store = useGameStore()
   })
 
   test('If Add Player button is clicked with input, player is entered', async () => {
@@ -81,25 +77,25 @@ describe('AddPlayersBar UX', () => {
     const addPlayersButton = wrapper.find('button')
     await addPlayersButton.trigger('click')
 
-    expect($store.commit).toHaveBeenCalledWith('addPlayer', { name: 'Rick' })
+    expect(store.addPlayer).toHaveBeenCalledWith('Rick')
   }),
   test('If Add Player button is clicked with no input, no player is entered', async () => {
+    const spy = jest.spyOn(store, 'addPlayer')
+
     const addPlayersButton = wrapper.find('button')
     await addPlayersButton.trigger('click')
 
-    expect($store.commit).not.toHaveBeenCalled()
+    expect(spy).not.toHaveBeenCalled()
   }),
   test('If Add Team button is clicked with no input, no team is entered', async () => {
     const input = wrapper.find('input')
     input.element.value = ''
     await input.trigger('input')
 
-    debugger
-
     const addTeamButton = wrapper.findAll('button')[1]
     await addTeamButton.trigger('click')
 
-    expect($store.commit).not.toHaveBeenCalled()
+    expect(store.addTeam).not.toHaveBeenCalled()
   }),
   test('If Add Team button is clicked with input, team is created', async () => {
     const input = wrapper.find('input')
@@ -109,6 +105,6 @@ describe('AddPlayersBar UX', () => {
     const addTeamButton = wrapper.findAll('button')[1]
     await addTeamButton.trigger('click')
 
-    expect($store.commit).toHaveBeenCalledWith('addTeam', { name: 'Team Superrad' })
+    expect(store.addTeam).toHaveBeenCalledWith('Team Superrad')
   })
 })

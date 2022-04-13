@@ -13,7 +13,8 @@ GameSlide
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'pinia'
+import { useGameStore } from '@/store'
 
 import PlayersSidebar from '@/components/Players/PlayersSidebar.vue'
 import GameSlide from '@/components/base/GameSlide.vue'
@@ -34,7 +35,7 @@ export default {
     'image'
   ],
   computed: {
-    ...mapGetters(['getPlayersByScore']),
+    ...mapGetters(useGameStore, ['getPlayersByScore']),
     players () {
       const players = this.getPlayersByScore
 

@@ -10,7 +10,7 @@
           | {{ winner }}
         .mt-2
           p.text-xl.leading-5.text-white.uppercase
-            | {{ answerName }} is {{ answerValue }}
+            | {{ answerName }} is {{ answerValue }}.
 </template>
 
 <script>

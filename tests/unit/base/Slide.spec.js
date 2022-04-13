@@ -1,4 +1,4 @@
-import Slide from '@/components/base/Slide'
+import Slide from '@/components/base/Slide.vue'
 import { mount } from '@vue/test-utils'
 
 describe('Slide', () => {

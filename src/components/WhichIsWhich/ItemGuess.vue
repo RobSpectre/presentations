@@ -36,7 +36,8 @@ GameSlide
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'pinia'
+import { useGameStore } from '@/store'
 
 import GameSlide from '@/components/base/GameSlide.vue'
 import WinnerCard from '@/components/base/WinnerCard.vue'
@@ -91,7 +92,7 @@ export default {
     correctGuess () {
       return this.items[this.winnerIndex]
     },
-    ...mapState(['game'])
+    ...mapState(useGameStore, ['game'])
   },
   methods: {
     guessItem (playerName, itemIndex) {
@@ -117,18 +118,12 @@ export default {
         if (guess.item.name === this.items[this.winnerIndex].name) {
           winners.push(guess.playerName)
 
-          this.increasePlayerScore({
-            playerName: guess.playerName,
-            value: parseInt(this.prize)
-          })
+          this.increasePlayerScore(guess.playerName, this.prize)
         }
       })
 
       if (winners.length === 1) {
-        this.increasePlayerScore({
-          playerName: winners[0],
-          value: parseInt(this.prize)
-        })
+        this.increasePlayerScore(winners[0], this.prize)
 
         const audio = new Audio('/sounds/sorry_for_party_rocking.mp3')
         audio.volume = 0.2
@@ -155,7 +150,7 @@ export default {
     dollarify (value) {
       return '$' + value
     },
-    ...mapMutations(['increasePlayerScore',
+    ...mapActions(useGameStore, ['increasePlayerScore',
       'increasePlayerButton',
       'increasePlayerIndex'])
   }
