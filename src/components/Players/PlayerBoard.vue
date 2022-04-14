@@ -5,6 +5,7 @@ section
     :addTeamsAllowed='addTeamsAllowed'
   )
   DisplayPlayers
+  slot
 </template>
 
 <script>
