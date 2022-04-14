@@ -1,18 +1,20 @@
 version: 2.1
 orbs:
-  node: circleci/node@3.0.1
+  node: circleci/node@5.0.2
+  codecov: codecov/codecov@3.1.1
 jobs:
   test:
     executor: node/default
     steps:
       - checkout
       - node/install:
-          install-yarn: true
-          node-version: latest
+          install-yarn: false 
+          node-version: lts/gallium 
       - node/install-packages:
           cache-path: ~/hack-party/node_modules
           override-ci-command: npm install
       - run: npm run test
+      - codecov/upload
 workflows:
   node-tests:
     jobs:

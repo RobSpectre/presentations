@@ -21,7 +21,8 @@ module.exports = {
   ],
   coverageReporters: [
     'html',
-    'text-summary'
+    'text-summary',
+    'json'
   ],
   globals: {
     'vue-jest': {
