@@ -2,7 +2,7 @@
 
 Quarantine friendly party games where everyone is welcome and anyone can play.
 
-[![RobSpectre](https://circleci.com/gh/RobSpectre/hack-party.svg?style=svg)](https://app.circleci.com/pipelines/github/RobSpectre/hack-party)
+[![RobSpectre](https://circleci.com/gh/RobSpectre/hack-party.svg?style=svg)](https://app.circleci.com/pipelines/github/RobSpectre/hack-party) [![codecov](https://codecov.io/gh/RobSpectre/hack-party/branch/master/graph/badge.svg?token=7SVBDUXJMN)](https://codecov.io/gh/RobSpectre/hack-party)
 
 
 ## Project setup
