@@ -188,6 +188,26 @@ describe('GameStore Player and Team Add/Remove', () => {
     expect(store.game.players).toStrictEqual([])
   })
 
+  it('adjust the playerButton and playerIndex based on number of players left', () => {
+    const store = useGameStore()
+
+    store.addPlayer('Morty')
+    store.addPlayer('Rick')
+    store.addPlayer('noob noob')
+
+    store.increasePlayerButton()
+    store.increasePlayerButton()
+
+    store.increasePlayerIndex()
+    store.increasePlayerIndex()
+
+    store.removePlayer('Morty')
+
+    expect(store.game.players.length).toBe(2)
+    expect(store.game.playerButton).toBe(0)
+    expect(store.game.playerIndex).toBe(0)
+  })
+
   it('deletes the team Vindicators', () => {
     const store = useGameStore()
 

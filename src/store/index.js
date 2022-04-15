@@ -99,6 +99,8 @@ const actions = {
   },
   removePlayer (name) {
     this.game.players = this.game.players.filter(player => name !== player.name)
+
+    this.increasePlayerButton()
   },
   changeAttributeOfPlayer (name, attribute, value) {
     const newPlayers = []
