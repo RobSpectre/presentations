@@ -25,13 +25,13 @@ GameSlide
     v-if='winners.length > 0'
     :winners='winners'
     :answerName='correctGuess.name'
-    :answerValue='dollarify(correctGuess.value)'
+    :answerValue='denominate(correctGuess.value)'
   )
   LoserCard(
     v-if='losers.length > 0'
     :losers='losers'
     :answerName='correctGuess.name'
-    :answerValue='dollarify(correctGuess.value)'
+    :answerValue='denominate(correctGuess.value)'
   )
 </template>
 
@@ -57,7 +57,11 @@ export default {
     items: Array,
     winnerIndex: Number,
     prize: Number,
-    question: String
+    question: String,
+    denomination: {
+      default: '$',
+      type: String
+    }
   },
   data () {
     return {
@@ -147,8 +151,8 @@ export default {
 
       this.increasePlayerButton()
     },
-    dollarify (value) {
-      return '$' + value
+    denominate (value) {
+      return this.denomination + value
     },
     ...mapActions(useGameStore, ['increasePlayerScore',
       'increasePlayerButton',
