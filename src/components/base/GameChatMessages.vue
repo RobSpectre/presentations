@@ -6,7 +6,7 @@ GameSlide
       .h-screen.flex.items-center.justify-center(class='w-4/6')
         ChatWindow(
           :current-user-id='currentUser'
-          :rooms='rooms'
+          :rooms='processedRooms'
           :messages='processedMessages'
           :rooms-loaded='true'
           :messages-loaded='true'
@@ -34,7 +34,11 @@ export default {
   },
   props: {
     currentUser: String,
-    messages: Array
+    messages: Array,
+    rooms: {
+      default: () => [],
+      type: Array
+    }
   },
   computed: {
     ...mapGetters(useGameStore, ['getPlayersByScore']),
@@ -61,8 +65,17 @@ export default {
 
       return messages
     },
-    rooms () {
-      return [{ roomId: 1, roomName: 'Alice' }]
+    correspondent () {
+      return this.messages.filter(message => message.username !== this.currentUser)[0].username
+    },
+    processedRooms () {
+      const rooms = [{ roomId: 1, roomName: this.correspondent }]
+
+      this.rooms.forEach((room, index) => {
+        rooms.push({ roomId: index + 2, roomName: room })
+      })
+
+      return rooms
     }
   }
 }
@@ -76,15 +89,23 @@ export default {
   --chat-message-color: theme('colors.white');
   --chat-message-bg-color-me: theme('colors.blue');
   --chat-color: theme('colors.green');
-  --chat-sidemenu-bg-color-active: theme('colors.darkgray');
+  --chat-sidemenu-bg-color-active: theme('colors.blue');
   --chat-room-color-username: theme('colors.white');
 }
 
 .vac-message-wrapper span {
-  @apply text-2xl;
+  @apply text-2xl text-left;
 }
 
 .vac-room-header .vac-room-name {
   @apply text-2xl;
+}
+
+.vac-room-container .vac-room-name {
+  @apply text-xl py-1;
+}
+
+.vac-room-item {
+  @apply bg-darkgray;
 }
 </style>
