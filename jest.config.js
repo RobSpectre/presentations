@@ -9,7 +9,8 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   setupFiles: [
-    './tests/setupTests.js'
+    './tests/setupTests.js',
+    'fake-indexeddb/auto'
   ],
   setupFilesAfterEnv: [
     '<rootDir>/jest.setup.js'
