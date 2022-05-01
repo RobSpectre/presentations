@@ -3,7 +3,7 @@ VideoSlide(
   v-if='backgroundType === "video"'
   :background='background'
 )
-  div(class='flex h-full')
+  .h-full.flex.items-center.justify-center
     img(
       v-if='headingType === "image"'
       class='titleLogo'
@@ -53,6 +53,6 @@ export default {
 
 <style lang="scss" scoped>
 .titleLogo {
-  @apply m-auto;
+  @apply flex grow-0;
 }
 </style>
