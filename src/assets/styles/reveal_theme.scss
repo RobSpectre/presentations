@@ -82,6 +82,8 @@ $heading4Size: 1.0em;
     background: none !important;
     border: none !important;
     box-shadow: none !important;
+    margin: 0 !important;
+    @apply max-w-full;
 }
 
 .reveal .bio {
