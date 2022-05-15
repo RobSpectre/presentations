@@ -1,7 +1,7 @@
 <template lang='pug'>
 GameSlide
   PlayersSidebar(:players='players')
-  .relative.mt-12.mx-auto(v-if='game.players')
+  .relative.mt-12.mx-auto(v-if='players')
     .flex.flex-col.mx-32.rounded-lg.shadow-lg.overflow-hidden.text-left
       .flex-shrink-0
         img.m-0.w-full.clear-reveal.object-cover(:src='headerImage' alt='')
@@ -11,7 +11,7 @@ GameSlide
           | {{ heading }}
           .my-2.text-center.flex.flex-col
             button.actionButton(
-              v-for='player in game.players'
+              v-for='player in players'
               @click='chooseWinner(player.name)'
               ) {{ player.name }}
       .flex-1.bg-green.p-6.flex.flex-col.justify-between
@@ -26,7 +26,7 @@ GameSlide
 </template>
 
 <script>
-import { mapState, mapActions } from 'pinia'
+import { mapGetters, mapActions } from 'pinia'
 import { useGameStore } from '@/store'
 
 import GameSlide from '@/components/base/GameSlide.vue'
@@ -65,21 +65,16 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(useGameStore, ['getPlayersByScore']),
     players () {
-      const players = []
+      const players = this.getPlayersByScore
 
-      this.game.players.forEach((player) => {
-        players.push(
-          {
-            name: player.name,
-            value: player.score
-          }
-        )
+      players.forEach((player) => {
+        player.value = player.score
       })
 
       return players
-    },
-    ...mapState(useGameStore, ['game'])
+    }
   },
   methods: {
     chooseWinner (playerName) {

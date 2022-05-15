@@ -2,21 +2,31 @@ import { mount } from '@vue/test-utils'
 
 import { createTestingPinia } from '@pinia/testing'
 
-import GameChatMessages from '@/components/base/GameChatMessages.vue'
+import GameContentWithSidebar from '@/components/base/GameContentWithSidebar.vue'
 
-describe('GameChatMessages', () => {
+describe('GameContentWithSidebar Empty', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = mount(GameChatMessages, {
-      props: {
-        currentUser: 'Rick Sanchez',
-        messages: [
-          { username: 'Rick Sanchez', content: 'I am Pickle Rick!' },
-          { username: 'Morty', content: 'Oh jeez.' }
-        ],
-        rooms: ['Alpha', 'Beta', 'Charlie']
-      },
+    wrapper = mount(GameContentWithSidebar, {
+      global: {
+        plugins: [createTestingPinia()]
+      }
+    })
+  })
+
+  it('renders with no players', async () => {
+    const section = wrapper.find('section')
+
+    expect(section).toBeDefined()
+  })
+})
+
+describe('GameContentWithSidebar', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = mount(GameContentWithSidebar, {
       global: {
         plugins: [createTestingPinia({
           initialState: {
@@ -52,6 +62,10 @@ describe('GameChatMessages', () => {
 
   it('renders with players', async () => {
     const players = await wrapper.vm.players
-    expect(players.length).toBe(3)
+    expect(players).toStrictEqual([
+      { name: 'Rick', value: 0, score: 0, index: 2, team: undefined },
+      { name: 'noob noob', value: 0, score: 0, index: 1, team: undefined },
+      { name: 'Morty', value: 0, score: 0, index: 0, team: undefined }
+    ])
   })
 })

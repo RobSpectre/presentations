@@ -2,20 +2,36 @@ import { mount } from '@vue/test-utils'
 
 import { createTestingPinia } from '@pinia/testing'
 
-import GameChatMessages from '@/components/base/GameChatMessages.vue'
+import GameIframe from '@/components/base/GameIframe.vue'
 
-describe('GameChatMessages', () => {
+describe('GameIframe Empty', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = mount(GameChatMessages, {
+    wrapper = mount(GameIframe, {
       props: {
-        currentUser: 'Rick Sanchez',
-        messages: [
-          { username: 'Rick Sanchez', content: 'I am Pickle Rick!' },
-          { username: 'Morty', content: 'Oh jeez.' }
-        ],
-        rooms: ['Alpha', 'Beta', 'Charlie']
+        iframe: 'http://localhost'
+      },
+      global: {
+        plugins: [createTestingPinia()]
+      }
+    })
+  })
+
+  it('renders with no players', async () => {
+    const iframe = wrapper.find('iframe')
+
+    expect(iframe).toBeDefined()
+  })
+})
+
+describe('GameIframe', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = mount(GameIframe, {
+      props: {
+        iframe: 'http://localhost'
       },
       global: {
         plugins: [createTestingPinia({
@@ -52,6 +68,10 @@ describe('GameChatMessages', () => {
 
   it('renders with players', async () => {
     const players = await wrapper.vm.players
-    expect(players.length).toBe(3)
+    expect(players).toStrictEqual([
+      { name: 'Rick', value: 0, score: 0, index: 2, team: undefined },
+      { name: 'noob noob', value: 0, score: 0, index: 1, team: undefined },
+      { name: 'Morty', value: 0, score: 0, index: 0, team: undefined }
+    ])
   })
 })

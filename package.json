@@ -27,7 +27,8 @@
     "reveal.js": "^4.3.0",
     "vue": "^3.2.31",
     "vue-advanced-chat": "https://github.com/antoine92190/vue-advanced-chat/tarball/next",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.13",
+    "vue-tweet": "^1.2.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",

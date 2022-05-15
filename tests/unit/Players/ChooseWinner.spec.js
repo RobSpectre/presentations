@@ -69,9 +69,9 @@ describe('ChooseWinner', () => {
   it('renders with players', async () => {
     const players = await wrapper.vm.players
     expect(players).toStrictEqual([
-      { name: 'Morty', value: 0 },
-      { name: 'noob noob', value: 0 },
-      { name: 'Rick', value: 0 }
+      { name: 'Rick', value: 0, score: 0, index: 2, team: undefined },
+      { name: 'noob noob', value: 0, score: 0, index: 1, team: undefined },
+      { name: 'Morty', value: 0, score: 0, index: 0, team: undefined }
     ])
   })
 
@@ -82,7 +82,7 @@ describe('ChooseWinner', () => {
 
     const winnerCard = await wrapper.findComponent({ name: 'WinnerCard' })
 
-    expect(store.increasePlayerScore).toHaveBeenCalledWith('Morty', 1)
+    expect(store.increasePlayerScore).toHaveBeenCalledWith('Rick', 1)
     expect(mocks.Audio.play).toHaveBeenCalled()
     expect(winnerCard.exists()).toBe(true)
   })
