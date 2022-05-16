@@ -19,7 +19,7 @@ import GameContent from '@/components/base/GameContent.vue'
 import PlayersSidebar from '@/components/Players/PlayersSidebar.vue'
 
 export default {
-  name: 'GameIframe',
+  name: 'GameContentWithSidebar',
   components: {
     GameSlide,
     PlayersSidebar,
