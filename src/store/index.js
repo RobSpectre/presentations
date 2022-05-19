@@ -33,6 +33,9 @@ const getters = {
 
     return teamsWithPlayersList
   },
+  getPlayer: (state) => (playerName) => {
+    return state.game.players.filter(player => playerName === player.name)[0]
+  },
   getPlayersFromTeam: (state) => (teamName) => {
     return state.game.players.filter(player => teamName === player.team)
   },

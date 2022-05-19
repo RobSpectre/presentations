@@ -403,6 +403,26 @@ describe('GameStore Getters', () => {
     expect(store.getPlayersFromTeam('Citadel')).toStrictEqual(expectedPlayers)
   })
 
+  it('get player Morty by name', () => {
+    const store = useGameStore()
+
+    store.addTeam('Citadel')
+    store.addTeam('Vindicators')
+
+    store.addPlayer('Morty')
+    store.addPlayer('noob noob')
+    store.addPlayer('Rick')
+
+    const expectedPlayer = {
+      index: 0,
+      name: 'Morty',
+      score: 0,
+      team: 'Citadel'
+    }
+
+    expect(store.getPlayer('Morty')).toStrictEqual(expectedPlayer)
+  })
+
   it('get three players with no score', () => {
     const store = useGameStore()
 
