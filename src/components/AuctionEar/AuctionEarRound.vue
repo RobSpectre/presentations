@@ -12,7 +12,7 @@ GameContentWithSidebar(v-if='game.players.length > 0')
       .flex.flex-col
         Ladder(
           :items='bids'
-          :ascending='true'
+          :ascending='false'
         )
         .pt-2
           CounterBox(
@@ -217,6 +217,8 @@ export default {
       this.winners.push(playerName)
 
       this.complete = true
+
+      this.increasePlayerButton()
     },
     awardLosers () {
       const audio = new Audio('/sounds/loser_sound.mp3')
@@ -224,6 +226,8 @@ export default {
       audio.play()
 
       this.losers = this.game.players.map(player => player.name)
+
+      this.increasePlayerButton()
     },
     ...mapActions(useGameStore,
       ['increasePlayerButton',

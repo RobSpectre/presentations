@@ -127,7 +127,7 @@ export default {
         this.currentTime = this.audio.currentTime
         this.duration = this.audio.duration
 
-        this.audio.volume = 0.5
+        this.audio.volume = 1
       })
     },
     convertAudioTimeToHumanString (seconds) {

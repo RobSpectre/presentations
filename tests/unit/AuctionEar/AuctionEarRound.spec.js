@@ -123,6 +123,7 @@ describe('AuctionEarRound', () => {
 
     expect(loserCard.exists()).toBe(true)
     expect(mocks.Audio.play).toHaveBeenCalled()
+    expect(wrapper.vm.game.playerButton).toBe(2)
   })
 
   it('game awards player for correct guess', async () => {
@@ -137,6 +138,7 @@ describe('AuctionEarRound', () => {
     expect(winnerCard.exists()).toBe(true)
     expect(wrapper.vm.game.players[0].score).toBe(60)
     expect(mocks.Audio.play).toHaveBeenCalled()
+    expect(wrapper.vm.game.playerButton).toBe(1)
   })
 })
 
@@ -197,5 +199,6 @@ describe('AuctionEarRound', () => {
     expect(winnerCard.exists()).toBe(true)
     expect(wrapper.vm.game.players[0].score).toBe(120)
     expect(mocks.Audio.play).toHaveBeenCalled()
+    expect(wrapper.vm.game.playerButton).toBe(1)
   })
 })
