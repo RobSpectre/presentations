@@ -67,7 +67,7 @@ export default {
       winner: '',
       losers: [],
       winningGuess: 0,
-      currentGuess: 0
+      currentGuess: ''
     }
   },
   computed: {
@@ -103,6 +103,9 @@ export default {
         playerName: playerName,
         guess: parseInt(guess)
       })
+
+      this.currentGuess = ''
+
       this.nextPlayer()
     },
     nextPlayer () {
