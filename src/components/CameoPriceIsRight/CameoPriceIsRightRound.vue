@@ -1,6 +1,8 @@
 <template lang='pug'>
 celebrity-intro(:celebrity='celebrity' :hint1='hint1' :hint2='hint2' :hint3='hint3' :image='image')
+slot(name='post-intro')
 celebrity-video(:celebrity='celebrity' :video='video')
+slot(name='post-video')
 celebrity-guess(
   :celebrity='celebrity'
   :image='image'

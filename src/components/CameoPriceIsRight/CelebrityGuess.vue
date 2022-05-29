@@ -8,7 +8,7 @@ GameSlide
       .flex-1.bg-white.p-6.flex.flex-col.justify-between
         .flex-1
           span.block.mt-2.text-xl.leading-7.font-semibold.text-gray-900
-            | How much is {{ celebrity }}&apos;s rate on Cameo?
+          | {{ question }}
           .my-4.text-center
             input.shadow.appearance-none.border.rounded.py-2.px-3.text-gray-700.leading-tight(class='w-1/3 focus:outline-none focus:shadow-outline' type='text' placeholder='Guess' v-model='currentGuess' v-on:keydown.enter='addGuess(currentPlayer, currentGuess)')
       .flex-1.bg-green.p-6.flex.flex-col.justify-between
@@ -58,7 +58,15 @@ export default {
     celebrity: String,
     image: String,
     price: Number,
-    prize: Number
+    prize: Number,
+    denomination: {
+      type: String,
+      default: '$'
+    },
+    question: {
+      type: String,
+      default: 'How much is this talent on Cameo?'
+    }
   },
   data () {
     return {
@@ -153,7 +161,7 @@ export default {
       this.increasePlayerButton()
     },
     dollarify (value) {
-      return '$' + value
+      return this.denomination + value
     },
     ...mapActions(useGameStore, ['increasePlayerScore',
       'increasePlayerButton',

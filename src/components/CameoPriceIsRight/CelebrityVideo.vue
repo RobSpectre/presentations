@@ -1,12 +1,9 @@
 <template lang="pug">
-GameSlide
-  PlayersSidebar(:players='players')
-  GameContent
-    template(v-slot:content)
-      video.mx-auto(controls='' style='height: 1200px;')
-        source(:src='video' type='video/mp4')
-    template(v-slot:footer)
-      h1 {{ celebrity }}
+GameVideo(
+  :video='video'
+)
+  template(v-slot:footer)
+    h1 {{ celebrity }}
 </template>
 
 <script>
@@ -14,7 +11,7 @@ import { mapGetters } from 'pinia'
 import { useGameStore } from '@/store'
 
 import GameSlide from '@/components/base/GameSlide.vue'
-import GameContent from '@/components/base/GameContent.vue'
+import GameVideo from '@/components/base/GameVideo.vue'
 import PlayersSidebar from '@/components/Players/PlayersSidebar.vue'
 
 export default {
@@ -22,7 +19,7 @@ export default {
   components: {
     PlayersSidebar,
     GameSlide,
-    GameContent
+    GameVideo
   },
   props: [
     'celebrity',

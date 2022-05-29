@@ -3,7 +3,7 @@ GameSlide
   PlayersSidebar(:players='players')
   GameContent
     template(v-slot:content)
-      .h-screen.flex.items-center.justify-center
+      .flex.h-screen.items-center.justify-center
         video(controls='')
           source(:src='videoSource' :type='videoType')
     template(v-slot:footer)
