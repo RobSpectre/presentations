@@ -141,7 +141,7 @@ export default {
         const audio = new Audio('/sounds/sorry_for_party_rocking.mp3')
         audio.volume = 0.2
         audio.play()
-      } if (winner.length > 0) {
+      } else if (winner.length > 0) {
         this.increasePlayerScore(winner, this.prize)
 
         const audio = new Audio('/sounds/fanfare.mp3')
