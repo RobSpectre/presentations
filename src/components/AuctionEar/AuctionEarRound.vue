@@ -23,11 +23,13 @@ GameContentWithSidebar(v-if='game.players.length > 0')
         AuctionEarBid(
           v-if="phase === 'bid'"
           :currentPlayer='currentPlayer'
+          :image='image'
           @output='handleBid'
         )
         AuctionEarGuess(
          v-if="phase === 'guess'"
          :currentPlayer='currentGuesser'
+         :image='image'
          :items='items'
          @guess='handleGuess'
          )
@@ -76,7 +78,10 @@ export default {
   props: {
     src: String,
     answer: String,
-    chunks: Number,
+    chunks: {
+      type: Number,
+      default: 5
+    },
     ascending: {
       type: Boolean,
       default: true
@@ -88,6 +93,14 @@ export default {
     chunkEvenly: {
       type: Boolean,
       default: false
+    },
+    gameType: {
+      type: String,
+      default: 'bidPerChunk'
+    },
+    image: {
+      type: String,
+      default: '/images/auctionear_header.png'
     }
   },
   data () {
@@ -168,13 +181,15 @@ export default {
       }
     },
     nextChunk () {
-      this.phaseIndex = 0
-      this.guessIndex = 0
-      this.bids = []
-
       this.chunkIndex++
 
-      this.increasePlayerButton()
+      if (this.gameType === 'bidPerChunk') {
+        this.phaseIndex = 0
+        this.guessIndex = 0
+        this.bids = []
+
+        this.increasePlayerButton()
+      }
 
       if (this.chunkIndex >= this.chunks) {
         this.complete = true
@@ -191,7 +206,9 @@ export default {
         this.bids[this.guessIndex].active = true
       }
 
-      if (this.phases[this.phaseIndex] === undefined) {
+      if (this.gameType === 'bidForChunk') {
+        this.nextChunk()
+      } else if (this.phases[this.phaseIndex] === undefined) {
         this.nextChunk()
       }
     },

@@ -142,7 +142,7 @@ describe('AuctionEarRound', () => {
   })
 })
 
-describe('AuctionEarRound', () => {
+describe('AuctionEarRound Test Total Pot Award', () => {
   let wrapper
 
   beforeEach(() => {
@@ -200,5 +200,85 @@ describe('AuctionEarRound', () => {
     expect(wrapper.vm.game.players[0].score).toBe(120)
     expect(mocks.Audio.play).toHaveBeenCalled()
     expect(wrapper.vm.game.playerButton).toBe(1)
+  })
+})
+
+describe('AuctionEarRound Bid For Chunk Mode', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = mount(AuctionEarRound, {
+      props: {
+        src: '/sounds/fanfare.mp3',
+        ascending: false,
+        gameType: 'bidForChunk',
+        chunks: 3
+      },
+      global: {
+        plugins: [createTestingPinia({
+          stubActions: false,
+          initialState: {
+            'hack.party game board': {
+              game: {
+                players: [
+                  {
+                    index: 0,
+                    name: 'Morty',
+                    score: 30,
+                    team: undefined
+                  },
+                  {
+                    index: 1,
+                    name: 'noob noob',
+                    score: 30,
+                    team: undefined
+                  },
+                  {
+                    index: 2,
+                    name: 'Rick',
+                    score: 30,
+                    team: undefined
+                  }
+                ]
+              }
+            }
+          }
+        })]
+      }
+    })
+  })
+
+  it('players bid then answer each chunk', async () => {
+    const spy = jest.spyOn(wrapper.vm, 'nextChunk')
+
+    await wrapper.vm.handleBid({ player: wrapper.vm.game.players[0], value: 30 })
+    await wrapper.vm.handleBid({ player: wrapper.vm.game.players[1], value: 30 })
+    await wrapper.vm.handleBid({ player: wrapper.vm.game.players[2], value: 30 })
+
+    await wrapper.vm.handleGuess({ player: wrapper.vm.game.players[0], value: 1 })
+
+    expect(wrapper.vm.chunkIndex).toBe(1)
+    expect(wrapper.vm.game.playerButton).toBe(0)
+    expect(wrapper.vm.bids.length).toBe(3)
+    expect(wrapper.vm.bids[0].value).toBe(0)
+    expect(spy).toHaveBeenCalled()
+  })
+
+  it('players lose if all chunks are played with no right answer', async () => {
+    await wrapper.vm.handleBid({ player: wrapper.vm.game.players[0], value: 30 })
+    await wrapper.vm.handleBid({ player: wrapper.vm.game.players[1], value: 30 })
+    await wrapper.vm.handleBid({ player: wrapper.vm.game.players[2], value: 30 })
+
+    await wrapper.vm.handleGuess({ player: wrapper.vm.game.players[0], value: 1 })
+    await wrapper.vm.handleGuess({ player: wrapper.vm.game.players[1], value: 1 })
+    await wrapper.vm.handleGuess({ player: wrapper.vm.game.players[2], value: 1 })
+
+    const loserCard = await wrapper.findComponent({ name: 'LoserCard' })
+
+    expect(wrapper.vm.game.players[2].score).toBe(0)
+    expect(wrapper.vm.prizeValue).toBe(90)
+    expect(wrapper.vm.game.playerButton).toBe(1)
+    expect(wrapper.vm.complete).toBe(true)
+    expect(loserCard.exists()).toBe(true)
   })
 })
