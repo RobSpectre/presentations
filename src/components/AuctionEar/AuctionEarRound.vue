@@ -162,7 +162,8 @@ export default {
         this.increasePlayerScore(event.player.name, -this.bids[this.guessIndex].value)
 
         this.prizeValue = this.prizeValue + this.bids[this.guessIndex].value
-        this.bids[this.guessIndex].value = 0
+        this.bids[this.guessIndex].passed = true
+        this.bids[this.guessIndex].active = false
 
         const audio = new Audio('/sounds/wrong_sound.mp3')
         audio.volume = 0.2
@@ -228,7 +229,7 @@ export default {
       }
 
       const audio = new Audio(this.src)
-      audio.volume = 0.5
+      audio.volume = 1.0
       audio.play()
 
       this.winners.push(playerName)
@@ -238,8 +239,8 @@ export default {
       this.increasePlayerButton()
     },
     awardLosers () {
-      const audio = new Audio('/sounds/loser_sound.mp3')
-      audio.volume = 0.2
+      const audio = new Audio(this.src)
+      audio.volume = 1.0
       audio.play()
 
       this.losers = this.game.players.map(player => player.name)
