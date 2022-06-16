@@ -90,7 +90,7 @@ describe('AuctionEarRound', () => {
     await wrapper.vm.handleGuess({ player: wrapper.vm.game.players[0], value: 1 })
 
     expect(wrapper.vm.guessIndex).toBe(1)
-    expect(wrapper.vm.bids[0].value).toBe(0)
+    expect(wrapper.vm.bids[0].value).toBe(30)
     expect(wrapper.vm.prizeValue).toBe(30)
   })
 
@@ -260,7 +260,7 @@ describe('AuctionEarRound Bid For Chunk Mode', () => {
     expect(wrapper.vm.chunkIndex).toBe(1)
     expect(wrapper.vm.game.playerButton).toBe(0)
     expect(wrapper.vm.bids.length).toBe(3)
-    expect(wrapper.vm.bids[0].value).toBe(0)
+    expect(wrapper.vm.bids[0].value).toBe(30)
     expect(spy).toHaveBeenCalled()
   })
 
