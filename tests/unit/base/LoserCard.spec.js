@@ -16,12 +16,8 @@ describe('LoserCard UX', () => {
   })
 
   it('LoserCard renders correctly', async () => {
-    const winner = await wrapper.find('span')
+    const answer = await wrapper.find('span')
 
-    expect(winner.text()).toBe('Rick')
-
-    const answer = await wrapper.find('p')
-
-    expect(answer.text()).toBe('The meaning of life is 42.')
+    expect(answer.text()).toBe('The meaning of life is 42')
   })
 })
