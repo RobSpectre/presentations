@@ -1,5 +1,8 @@
 <template lang="pug">
-section(:class='classes')
+section(
+  :class='classes'
+  :data-state='dataState'
+)
   .h-screen.flex.overflow-hidden
     slot
     h1(v-if='heading') {{ heading }}
@@ -14,6 +17,10 @@ export default {
     },
     classes: {
       type: String
+    },
+    dataState: {
+      type: String,
+      default: null
     }
   }
 }

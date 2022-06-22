@@ -1,5 +1,5 @@
 <template lang='pug'>
-GameSlide
+GameSlide(:dataState='dataState')
   PlayersSidebar(:players='players')
   GameContent
     template(v-slot:header)
@@ -26,7 +26,10 @@ export default {
     GameContent
   },
   props: {
-    iframe: String
+    dataState: {
+      type: String,
+      default: null
+    }
   },
   computed: {
     ...mapGetters(useGameStore, ['getPlayersByScore']),

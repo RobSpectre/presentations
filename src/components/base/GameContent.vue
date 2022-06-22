@@ -3,7 +3,7 @@
   .flex-col.items-center.w-full
     .flex-none.bg-blue
       slot(name='header')
-    .flex.flex-initial.items-center.justify-center
+    .flex-grow.items-center.justify-center
       slot(name='content')
       slot(name='footer')
 </template>

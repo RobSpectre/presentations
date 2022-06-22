@@ -38,7 +38,18 @@ export default {
         embedded: true,
         margin: 0,
         width: '100%',
-        height: '100%'
+        height: '100%',
+        keyboard: {
+          32: null,
+          66: null,
+          70: null,
+          72: null,
+          75: null,
+          76: null,
+          78: null,
+          79: null,
+          80: null
+        }
       })
 
       this.deck.initialize().then(() => {
