@@ -76,19 +76,23 @@ export default {
       return this.board[this.currentRowIndex]
     },
     ladder () {
-      const activePlayer = {
-        name: this.currentPlayer.name,
-        active: true
-      }
+      if (this.game.players.length > 0) {
+        const activePlayer = {
+          name: this.currentPlayer.name,
+          active: true
+        }
 
-      if (this.success === true) {
-        const finalPlayers = this.pastPlayers
+        if (this.success === true) {
+          const finalPlayers = this.pastPlayers
 
-        finalPlayers[finalPlayers.length - 1].winner = true
+          finalPlayers[finalPlayers.length - 1].winner = true
 
-        return finalPlayers
+          return finalPlayers
+        } else {
+          return [...this.pastPlayers, activePlayer]
+        }
       } else {
-        return [...this.pastPlayers, activePlayer]
+        return []
       }
     },
     correctLetters () {
@@ -165,6 +169,10 @@ export default {
       }
     },
     completeRow () {
+      const startAudio = new Audio('/sounds/tile_reveal.mp3')
+      startAudio.volume = 0.5
+      startAudio.play()
+
       let presentCount = 0
       let correctCount = 0
 
@@ -271,10 +279,10 @@ export default {
 
       this.pastPlayers.push(lastPlayer)
     },
-    loopSound (soundFile) {
+    loopSound (soundFile, playerName) {
       this.loopInterval--
 
-      console.log(this.loopInterval)
+      this.increasePlayerScore(playerName)
 
       if (this.loopInterval <= 0) {
         clearInterval(this.loop)
@@ -288,11 +296,9 @@ export default {
       const totalScore = (presentCount * this.prize) + ((correctCount * this.prize) * 2)
 
       if (totalScore > 0) {
-        this.increasePlayerScore(playerName, totalScore)
-
         this.loopInterval = totalScore
 
-        this.loop = setInterval(() => this.loopSound('/sounds/sonic_ring.mp3'), 150)
+        this.loop = setInterval(() => this.loopSound('/sounds/sonic_ring.mp3', playerName), 100)
       } else {
         const audio = new Audio('/sounds/wrong_sound.mp3')
         audio.play()
