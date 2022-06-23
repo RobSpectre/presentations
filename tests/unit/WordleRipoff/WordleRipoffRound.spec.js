@@ -121,7 +121,7 @@ describe('WordleRipoffRound', () => {
 
     jest.advanceTimersByTime(3000)
 
-    expect(wrapper.vm.game.players[0].score).toBe(13)
+    expect(wrapper.vm.game.players[0].score).toBe(14)
   })
 
   it('does not allow entry that is not a word', async () => {

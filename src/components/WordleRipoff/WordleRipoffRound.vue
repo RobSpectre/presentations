@@ -229,7 +229,7 @@ export default {
             this.success = true
             this.toast.success(this.currentPlayer.name + ' is the winner!')
 
-            const totalScore = ((correctCount * this.prize) * 2) + (this.prize * 5)
+            const totalScore = ((correctCount * this.prize) * 2) + (this.prize * (6 - this.currentRowIndex))
 
             this.increasePlayerScore(this.currentPlayer.name, totalScore)
 
