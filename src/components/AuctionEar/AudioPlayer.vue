@@ -1,7 +1,7 @@
 <template lang='pug'>
 .w-full.flex.flex-col.flex-grow.relative.bg-stone-700.audio-player
   .border-t.border-b.border-2.border-slate-400
-    .h-9.w-full.relative.overflow-hidden
+    .h-11.w-full.relative.overflow-hidden
       #round-progress.h-full.absolute.overflow-hidden.bg-stone-200(
         :style='roundProgress'
       )

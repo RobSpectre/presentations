@@ -17,9 +17,6 @@ describe('WordleRipoffRound Empty', () => {
 
   beforeEach(() => {
     wrapper = mount(WordleRipoffRound, {
-      props: {
-        answer: 'racer'
-      },
       global: {
         plugins: [createTestingPinia()]
       }
