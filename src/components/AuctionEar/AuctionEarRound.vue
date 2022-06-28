@@ -228,9 +228,15 @@ export default {
         this.increasePlayerScore(playerName, this.prizeValue)
       }
 
-      const audio = new Audio(this.src)
-      audio.volume = 1.0
-      audio.play()
+      if (this.chunkIndex >= (this.chunks - 1)) {
+        const audio = new Audio('/sounds/fanfare.mp3')
+        audio.volume = 1.0
+        audio.play()
+      } else {
+        const audio = new Audio(this.src)
+        audio.volume = 1.0
+        audio.play()
+      }
 
       this.winners.push(playerName)
 

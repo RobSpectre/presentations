@@ -7,6 +7,7 @@ export const mocks = {
       callback()
     }),
     currentTime: 12,
-    duration: 16
+    duration: 16,
+    clearMocks: true
   }
 }

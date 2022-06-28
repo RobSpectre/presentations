@@ -281,4 +281,16 @@ describe('AuctionEarRound Bid For Chunk Mode', () => {
     expect(wrapper.vm.complete).toBe(true)
     expect(loserCard.exists()).toBe(true)
   })
+
+  it('guess is right on the last chunk, play fanfare instead of song', async () => {
+    await wrapper.vm.handleBid({ player: wrapper.vm.game.players[0], value: 30 })
+    await wrapper.vm.handleBid({ player: wrapper.vm.game.players[1], value: 30 })
+    await wrapper.vm.handleBid({ player: wrapper.vm.game.players[2], value: 30 })
+
+    await wrapper.vm.handleGuess({ player: wrapper.vm.game.players[0], value: 1 })
+    await wrapper.vm.handleGuess({ player: wrapper.vm.game.players[1], value: 1 })
+    await wrapper.vm.handleGuess({ player: wrapper.vm.game.players[2], value: 0 })
+
+    expect(mocks.Audio.play).toHaveBeenCalled()
+  })
 })
