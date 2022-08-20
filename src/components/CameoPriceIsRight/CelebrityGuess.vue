@@ -127,9 +127,24 @@ export default {
     findWinner () {
       let bestGuess = 0
       let winner = ''
+      let priceValue = 0
+
+      if (this.price < 0) {
+        priceValue = parseInt(this.price) * -1
+      } else {
+        priceValue = parseInt(this.price)
+      }
 
       this.guesses.forEach((guess) => {
-        if (parseInt(guess.guess) > bestGuess && parseInt(guess.guess) <= parseInt(this.price)) {
+        let guessValue = 0
+
+        if (guess.guess < 0) {
+          guessValue = parseInt(guess.guess) * -1
+        } else {
+          guessValue = parseInt(guess.guess)
+        }
+
+        if (guessValue > bestGuess && guessValue <= priceValue) {
           bestGuess = guess.guess
           winner = guess.playerName
         }
