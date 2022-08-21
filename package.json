@@ -19,7 +19,6 @@
     "@heroicons/vue": "^1.0.5",
     "animate.css": "^4.1.0",
     "gsap": "^3.10.2",
-    "node-sass": "^7.0.1",
     "pinia": "^2.0.13",
     "pinia-plugin-persistedstate": "^1.5.1",
     "pug": "^3.0.2",
