@@ -12,8 +12,8 @@
     "test:inspect": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "engines": {
-    "node": "17.6.0",
-    "npm": "8.5.1"
+    "node": "18.7.0",
+    "npm": "8.15.0"
   },
   "dependencies": {
     "@heroicons/vue": "^1.0.5",
