@@ -126,27 +126,32 @@ export default {
     },
     findWinner () {
       let bestGuess = 0
+      let guessDistance = 100000000
       let winner = ''
-      let priceValue = 0
-
-      if (this.price < 0) {
-        priceValue = parseInt(this.price) * -1
-      } else {
-        priceValue = parseInt(this.price)
-      }
+      const price = parseInt(this.price)
+      let currentGuess = 0
 
       this.guesses.forEach((guess) => {
-        let guessValue = 0
+        debugger
 
-        if (guess.guess < 0) {
-          guessValue = parseInt(guess.guess) * -1
+        currentGuess = parseInt(guess.guess)
+
+        if (price < 0) {
+          if (currentGuess >= price) {
+            if (Math.abs(currentGuess - price) < guessDistance) {
+              guessDistance = Math.abs(currentGuess - price)
+              bestGuess = currentGuess
+              winner = guess.playerName
+            }
+          }
         } else {
-          guessValue = parseInt(guess.guess)
-        }
-
-        if (guessValue > bestGuess && guessValue <= priceValue) {
-          bestGuess = guess.guess
-          winner = guess.playerName
+          if (currentGuess <= price) {
+            if (Math.abs(currentGuess - price) < guessDistance) {
+              guessDistance = Math.abs(currentGuess - price)
+              bestGuess = currentGuess
+              winner = guess.playerName
+            }
+          }
         }
       })
 

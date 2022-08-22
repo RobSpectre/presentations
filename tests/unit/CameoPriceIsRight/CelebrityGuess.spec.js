@@ -182,8 +182,6 @@ describe('CelebrityGuess', () => {
 
     const loserCard = await wrapper.findComponent({ name: 'LoserCard' })
 
-    debugger
-
     expect(spy).toHaveBeenCalled()
     expect(mocks.Audio.play).toHaveBeenCalled()
     expect(loserCard.exists()).toBe(true)
@@ -204,6 +202,7 @@ describe('CelebrityGuess', () => {
       },
       global: {
         plugins: [createTestingPinia({
+          stubActions: false,
           initialState: {
             'hack.party game board': {
               game: {
@@ -262,15 +261,40 @@ describe('CelebrityGuess', () => {
     expect(store.increasePlayerScore).toBeCalledWith('Morty', 1)
   })
 
+  it('awards the correct winner with negative values when positive numbers are close', async () => {
+    const spy = jest.spyOn(wrapper.vm, 'findWinner')
+
+    const input = await wrapper.find('input')
+    await input.setValue('-4')
+    await input.trigger('keydown.enter')
+    await input.setValue('-7')
+    await input.trigger('keydown.enter')
+    await input.setValue('5')
+    await input.trigger('keydown.enter')
+
+    await flushPromises()
+
+    const button = await wrapper.find('button')
+
+    await button.trigger('click')
+
+    const winnerCard = await wrapper.findComponent({ name: 'WinnerCard' })
+
+    expect(spy).toHaveBeenCalled()
+    expect(mocks.Audio.play).toHaveBeenCalled()
+    expect(winnerCard.exists()).toBe(true)
+    expect(store.increasePlayerScore).toBeCalledWith('Morty', 1)
+  })
+
   it('presents LoserCard if all players are all under a negative price', async () => {
     const spy = jest.spyOn(wrapper.vm, 'findWinner')
 
     const input = await wrapper.find('input')
-    await input.setValue('10')
+    await input.setValue('-10')
     await input.trigger('keydown.enter')
-    await input.setValue('11')
+    await input.setValue('-11')
     await input.trigger('keydown.enter')
-    await input.setValue('12')
+    await input.setValue('-12')
     await input.trigger('keydown.enter')
 
     await flushPromises()
@@ -281,10 +305,33 @@ describe('CelebrityGuess', () => {
 
     const loserCard = await wrapper.findComponent({ name: 'LoserCard' })
 
-    debugger
-
     expect(spy).toHaveBeenCalled()
     expect(mocks.Audio.play).toHaveBeenCalled()
     expect(loserCard.exists()).toBe(true)
+  })
+
+  it('awards winner with positive guess when negative guesses are too low', async () => {
+    const spy = jest.spyOn(wrapper.vm, 'findWinner')
+
+    const input = await wrapper.find('input')
+    await input.setValue('10')
+    await input.trigger('keydown.enter')
+    await input.setValue('-41')
+    await input.trigger('keydown.enter')
+    await input.setValue('-51')
+    await input.trigger('keydown.enter')
+
+    await flushPromises()
+
+    const button = await wrapper.find('button')
+
+    await button.trigger('click')
+
+    const winnerCard = await wrapper.findComponent({ name: 'WinnerCard' })
+
+    expect(spy).toHaveBeenCalled()
+    expect(mocks.Audio.play).toHaveBeenCalled()
+    expect(winnerCard.exists()).toBe(true)
+    expect(store.increasePlayerScore).toBeCalledWith('Morty', 1)
   })
 })
