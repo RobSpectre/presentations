@@ -132,8 +132,6 @@ export default {
       let currentGuess = 0
 
       this.guesses.forEach((guess) => {
-        debugger
-
         currentGuess = parseInt(guess.guess)
 
         if (price < 0) {
