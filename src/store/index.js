@@ -45,6 +45,21 @@ const getters = {
       players.push(player)
     })
     return players.sort((a, b) => a.score - b.score).reverse()
+  },
+  getPlayersFromButton (state) {
+    const players = []
+    let index = state.game.playerIndex
+
+    for (let i = 0; i < state.game.players.length; i++) {
+      if (state.game.players[index] === undefined) {
+        index = 0
+      }
+
+      players.push(state.game.players[index])
+      index++
+    }
+
+    return players
   }
 }
 

@@ -55,6 +55,7 @@ export default {
       this.deck.initialize().then(() => {
         this.deck.layout()
         this.$emit('reveal-rendered', this.deck)
+        window.deck = this.deck
       })
     }
   }
