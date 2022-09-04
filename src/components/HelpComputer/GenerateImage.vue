@@ -35,7 +35,7 @@ import GameContentWithSidebar from '@/components/base/GameContentWithSidebar.vue
 
 import TextInput from '@/components/base/TextInput.vue'
 
-import { AtomSpinner } from 'epic-spinners'
+import AtomSpinner from '@/components/base/AtomSpinner.vue'
 
 import websocket from '@/services/websocket.js'
 
