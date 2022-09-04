@@ -72,7 +72,7 @@ export default {
       }
     }
   },
-  created () {
+  mounted () {
     this.connection = websocket
 
     this.connection.addEventListener('open', () => {
