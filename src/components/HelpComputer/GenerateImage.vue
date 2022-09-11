@@ -16,6 +16,7 @@ GameContentWithSidebar
       )
       .flex-col.justify-center.items-center(v-if='!loading')
         h5(v-if='prompt !== false') {{ prompt }}
+        h5(v-else-if="currentPrompt !== ''") {{ currentPrompt }}
         .flex.flex-none.justify-center.items-center(v-if='!loading')
           img.py-5(
             v-if='!loading && (image !== false)'
@@ -50,8 +51,13 @@ export default {
   },
   props: {
     comparisonImage: String,
-    playerName: String
+    playerName: String,
+    currentPrompt: {
+      type: String,
+      default: ''
+    }
   },
+  emits: ['imageGenerated'],
   data () {
     return {
       loading: false,
@@ -89,9 +95,17 @@ export default {
   },
   methods: {
     handleInput (input) {
+      let text
+
+      if (this.currentPrompt === '') {
+        text = input.text
+      } else {
+        text = this.currentPrompt + ' ' + input.text
+      }
+
       this.connection.send(JSON.stringify({
         name: 'Image Request',
-        prompt: input.text,
+        prompt: text,
         playerName: this.playerName,
         id: this.id
       }))

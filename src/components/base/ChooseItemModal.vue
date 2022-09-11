@@ -14,8 +14,14 @@
             :class='{ fragment: fragmentItemReveal }'
             ) {{ item.name }} {{ item.emoji }}
     .flex-1.bg-green.p-6.flex.flex-col.justify-between
-      span.text-2xl.uppercase.leading-7.font-semibold.text-white
+      span.text-2xl.uppercase.leading-7.font-semibold.text-white(
+        v-if="selectedPlayer === ''"
+      )
         | {{ currentPlayer }}
+      span.text-2xl.uppercase.leading-7.font-semibold.text-white(
+        v-else
+      )
+        | {{ selectedPlayer }}
 </template>
 
 <script>
@@ -51,6 +57,10 @@ export default {
     fragmentItemReveal: {
       type: Boolean,
       default: false
+    },
+    selectedPlayer: {
+      type: String,
+      default: ''
     }
   },
   computed: {

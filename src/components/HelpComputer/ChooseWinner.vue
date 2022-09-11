@@ -18,7 +18,7 @@ GameContentWithSidebar
       v-if='winners.length > 0'
       :winners='winners'
       answerName='That'
-      answerValue='a dead ringer'
+      :answerValue='congratulation'
       :headerImage='winningImage'
     )
 </template>
@@ -39,7 +39,11 @@ export default {
   props: {
     images: Array,
     title: String,
-    prize: Number
+    prize: Number,
+    congratulation: {
+      type: String,
+      default: 'a dead ringer'
+    }
   },
   data () {
     return {
