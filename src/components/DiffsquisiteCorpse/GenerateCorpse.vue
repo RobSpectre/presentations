@@ -1,6 +1,7 @@
 <template lang='pug'>
 GameContentWithSidebar
   template(v-slot:content)
+    h2 {{ currentPrompt }}
     ChooseItemModal(
       :selectedPlayer='playerName'
       :items='hints'

@@ -3,6 +3,7 @@ GenerateCorpse(
   v-for='player in getPlayersFromButton'
   :playerName='player.name'
   :hints='hints'
+  :currentPrompt='prompt'
   @imageGenerated='handleImageGenerated'
 )
 ChooseWinner(

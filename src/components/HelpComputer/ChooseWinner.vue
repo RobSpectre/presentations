@@ -13,7 +13,7 @@ GameContentWithSidebar
             :src='/images/ + image.imagePath'
           )
   template(v-slot:footer)
-    h1 {{ title }}
+    h5 {{ title }}
     WinnerCard(
       v-if='winners.length > 0'
       :winners='winners'
