@@ -1,11 +1,12 @@
 <template lang="pug">
 GameSlide
-  PlayersSidebar(:players='players')
+  PlayersSidebar(:players='playersToDisplay')
   GameContent
     template(v-slot:content)
       .flex.h-screen.items-center.justify-center
         video(controls='')
           source(:src='videoSource' :type='videoType')
+        slot(name='content')
     template(v-slot:footer)
       h1(v-if='title') {{ title }}
       slot(name='footer')
@@ -36,18 +37,28 @@ export default {
     limit: {
       type: Number,
       default: 0
+    },
+    players: {
+      type: Array,
+      default () {
+        return []
+      }
     }
   },
   computed: {
     ...mapGetters(useGameStore, ['getPlayersByScore']),
-    players () {
-      const players = this.getPlayersByScore
+    playersToDisplay () {
+      if (this.players.length === 0) {
+        const players = this.getPlayersByScore
 
-      players.forEach((player) => {
-        player.value = player.score
-      })
+        players.forEach((player) => {
+          player.value = player.score
+        })
 
-      return players
+        return players
+      } else {
+        return this.players
+      }
     },
     videoSource () {
       if (this.limit > 0) {

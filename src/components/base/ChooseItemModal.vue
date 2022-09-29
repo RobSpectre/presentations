@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     guessItem (playerName, index) {
-      this.$emit('guess', { playerName: playerName, value: index })
+      this.$emit('guess', { playerName: playerName, value: index, emoji: this.items[index].emoji })
     }
   }
 }

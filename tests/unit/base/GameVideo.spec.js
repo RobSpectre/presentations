@@ -47,7 +47,7 @@ describe('GameVideo', () => {
   })
 
   it('renders with players', async () => {
-    const players = await wrapper.vm.players
+    const players = await wrapper.vm.playersToDisplay
     expect(players.length).toBe(3)
   })
 })
