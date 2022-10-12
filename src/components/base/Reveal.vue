@@ -10,7 +10,9 @@ export default {
   name: 'Reveal',
   data: function () {
     return {
-      deck: undefined
+      deck: undefined,
+      alphabet: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+        'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     }
   },
   mounted () {
@@ -56,7 +58,36 @@ export default {
         this.deck.layout()
         this.$emit('reveal-rendered', this.deck)
         window.deck = this.deck
+        this.setShortcuts(window.deck.getCurrentSlide())
+        this.setShortcutListener()
       })
+    },
+    setShortcutListener () {
+      window.deck.on('slidechanged', event => {
+        this.setShortcuts(event.currentSlide)
+      })
+    },
+    setShortcuts (slide) {
+      if (slide.getElementsByTagName('button').length > 0) {
+        this.setButtonShortcuts(slide)
+      } else if (slide.getElementsByTagName('input').length > 0) {
+        this.setInputShortcut(slide)
+      } else if (slide.getElementsByTagName('a').length > 0) {
+        this.setAnchorShortcuts(slide)
+      }
+    },
+    setButtonShortcuts (slide) {
+      Array.from(slide.getElementsByTagName('button')).forEach((button, index) => {
+        button.setAttribute('accesskey', this.alphabet[index])
+      })
+    },
+    setAnchorShortcuts (slide) {
+      Array.from(slide.getElementsByTagName('a')).forEach((button, index) => {
+        button.setAttribute('accesskey', this.alphabet[index])
+      })
+    },
+    setInputShortcut (slide) {
+      slide.getElementsByTagName('input')[0].setAttribute('accesskey', 'i')
     }
   }
 }

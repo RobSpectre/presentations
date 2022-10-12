@@ -27,6 +27,7 @@ GameSlide(v-if='game.players.length > 0')
         v-if='complete == true && winners.length <= 0 && losers.length <= 0'
         label='Which is which?'
         @click='findWinners()'
+        accesskey='z'
       )
     template(v-slot:footer)
       WinnerCard(

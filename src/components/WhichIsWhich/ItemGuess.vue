@@ -20,7 +20,11 @@ GameSlide
           | {{ currentPlayer }}
   .mx-auto.align-middle(v-if='complete == true && winners.length <= 0 && losers.length <= 0')
     span.inline-flex.rounded-md.shadow-sm
-      button.inline-flex.items-center.px-6.py-3.border.border-transparent.text-base.leading-6.font-medium.rounded-md.text-white.uppercase.bg-slate-400.transition.ease-in-out.duration-150.mt-12(type='button' class='hover:bg-slate-700 focus:outline-none focus:border-slate-700 active:bg-slate-700' @click='findWinners()')
+      button.inline-flex.items-center.px-6.py-3.border.border-transparent.text-base.leading-6.font-medium.rounded-md.text-white.uppercase.bg-slate-400.transition.ease-in-out.duration-150.mt-12(
+      type='button'
+      class='hover:bg-slate-700 focus:outline-none focus:border-slate-700 active:bg-slate-700'
+      @click='findWinners()'
+      accesskey='z')
         | Which is Which?
   WinnerCard(
     v-if='winners.length > 0'

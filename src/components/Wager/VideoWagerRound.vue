@@ -3,7 +3,11 @@ GameVideo(:video='video' :limit='limit')
 Wager(:items='items' @bet='handleBet')
 GameVideo(:video='video')
   template(v-slot:footer)
-    ActionButton(label='Pay Out' @clicked='payOut')
+    ActionButton(
+      label='Pay Out'
+      @clicked='payOut'
+      accesskey='z'
+    )
     WinnerCard(
       v-if='winners.length > 0'
       :winners='winners'
