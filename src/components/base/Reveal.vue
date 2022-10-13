@@ -70,10 +70,12 @@ export default {
     setShortcuts (slide) {
       if (slide.getElementsByTagName('button').length > 0) {
         this.setButtonShortcuts(slide)
-      } else if (slide.getElementsByTagName('input').length > 0) {
-        this.setInputShortcut(slide)
       } else if (slide.getElementsByTagName('a').length > 0) {
         this.setAnchorShortcuts(slide)
+      }
+
+      if (slide.getElementsByTagName('input').length > 0) {
+        this.setInputShortcut(slide)
       }
     },
     setButtonShortcuts (slide) {

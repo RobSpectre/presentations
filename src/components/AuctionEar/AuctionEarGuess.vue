@@ -10,6 +10,7 @@
         button.actionButton(
           v-for='(item, index) in items'
           @click='emitGuess(currentPlayer, index)'
+          :accesskey='alphabet[index]'
           ) {{ item.name }} {{ item.emoji }}
   .flex-1.bg-green.p-6.flex.flex-col.justify-between
     span.text-2xl.leading-7.font-semibold.text-white
@@ -29,6 +30,12 @@ export default {
     image: {
       type: String,
       default: '/images/auctionear_header.png'
+    }
+  },
+  data () {
+    return {
+      alphabet: ['b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+        'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
     }
   },
   methods: {
