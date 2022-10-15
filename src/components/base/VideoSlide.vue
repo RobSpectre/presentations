@@ -11,7 +11,6 @@ section(
   v-else
   :data-background-video='background'
   data-background-color='#000'
-  data-background-video-loop
 )
   slot
 </template>
