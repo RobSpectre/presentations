@@ -500,3 +500,77 @@ describe('GameStore Getters', () => {
     expect(store.teamsWithPlayers).toStrictEqual(expectedPlayers.reverse())
   })
 })
+
+describe('GameStore Getters', () => {
+  beforeEach(() => {
+    setActivePinia(createPinia())
+  })
+
+  it('returns players from the button', () => {
+    const store = useGameStore()
+
+    store.addPlayer('Morty')
+    store.addPlayer('Rick')
+    store.addPlayer('Jerry')
+
+    const players = store.getPlayersFromButton
+
+    const expectedPlayers = [
+      {
+        index: 0,
+        name: 'Morty',
+        score: 0,
+        team: undefined
+      },
+      {
+        index: 1,
+        name: 'Rick',
+        score: 0,
+        team: undefined
+      },
+      {
+        index: 2,
+        name: 'Jerry',
+        score: 0,
+        team: undefined
+      }
+    ]
+
+    expect(players).toStrictEqual(expectedPlayers)
+  })
+
+  it('returns empty array from getPlayersFromButton with no players', () => {
+    const store = useGameStore()
+
+    store.addPlayer('Morty')
+    store.addPlayer('Rick')
+    store.addPlayer('Jerry')
+
+    const expectedPlayers = [
+      {
+        index: 1,
+        name: 'Rick',
+        score: 0,
+        team: undefined
+      },
+      {
+        index: 2,
+        name: 'Jerry',
+        score: 0,
+        team: undefined
+      },
+      {
+        index: 0,
+        name: 'Morty',
+        score: 0,
+        team: undefined
+      }
+    ]
+
+    store.increasePlayerButton()
+
+    const players = store.getPlayersFromButton
+
+    expect(players).toStrictEqual(expectedPlayers)
+  })
+})
