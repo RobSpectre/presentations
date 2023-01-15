@@ -84,6 +84,10 @@ export default {
     fragmentItemReveal: {
       default: false,
       type: Boolean
+    },
+    playerOrder: {
+      type: String,
+      default: 'highestScoreFirst'
     }
   },
   data () {
@@ -97,7 +101,7 @@ export default {
   },
   computed: {
     ...mapState(useGameStore, ['game']),
-    ...mapGetters(useGameStore, ['getPlayersByScore']),
+    ...mapGetters(useGameStore, ['getPlayersByScore', 'getPlayersFromButton']),
     src () {
       return this.tracks[this.trackIndex]
     },
@@ -109,7 +113,36 @@ export default {
       }
     },
     players () {
-      return this.getPlayersByScore
+      const players = []
+
+      if (this.playerOrder === 'lowestScoreFirst') {
+        const reversedPlayers = this.getPlayersByScore.revese()
+
+        reversedPlayers.forEach((player) => {
+          players.push({
+            name: player.name,
+            value: player.score
+          })
+        })
+      } else if (this.playerOrder === 'button') {
+        this.getPlayersFromButton.forEach((player) => {
+          players.push({
+            name: player.name,
+            value: player.score
+          })
+        })
+      } else {
+        this.getPlayersByScore.forEach((player) => {
+          players.push(
+            {
+              name: player.name,
+              value: player.score
+            }
+          )
+        })
+      }
+
+      return players
     }
   },
   methods: {
@@ -130,6 +163,8 @@ export default {
         audio.play()
 
         this.losers = this.players.map(player => player.name)
+
+        this.increasePlayerButton()
       }
     },
     checkAnswer (playerName, itemIndex) {
@@ -153,6 +188,8 @@ export default {
         }
 
         this.winners.push(playerName)
+
+        this.increasePlayerButton()
       } else {
         const audio = new Audio('/sounds/wrong_sound.mp3')
         audio.volume = 0.5

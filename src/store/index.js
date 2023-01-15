@@ -48,7 +48,7 @@ const getters = {
   },
   getPlayersFromButton (state) {
     const players = []
-    let index = state.game.playerIndex
+    let index = state.game.playerButton
 
     for (let i = 0; i < state.game.players.length; i++) {
       if (state.game.players[index] === undefined) {
