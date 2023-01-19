@@ -116,7 +116,7 @@ export default {
       const players = []
 
       if (this.playerOrder === 'lowestScoreFirst') {
-        const reversedPlayers = this.getPlayersByScore.revese()
+        const reversedPlayers = this.reverse(this.getPlayersByScore)
 
         reversedPlayers.forEach((player) => {
           players.push({
@@ -197,6 +197,15 @@ export default {
 
         this.nextPlayer()
       }
+    },
+    reverse (array) {
+      const output = []
+
+      while (array.length) {
+        output.push(array.pop())
+      }
+
+      return output
     },
     ...mapActions(useGameStore,
       ['increasePlayerButton',
