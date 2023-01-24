@@ -153,3 +153,105 @@ describe('SnackTrackRound', () => {
     expect(loserCard.exists()).toBe(true)
   })
 })
+
+describe('SnackTrackRoundLowScore', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = mount(SnackTrackRound, {
+      props: {
+        tracks: ['/sounds/1.mp3', '/sounds/2.mp3', 'sounds/3.mp3'],
+        items: ['Right', 'Wrong'],
+        winnerIndex: 0,
+        answer: 'Super Max by the Pit Stop Boys',
+        playerOrder: 'lowestScoreFirst'
+      },
+      global: {
+        plugins: [createTestingPinia({
+          initialState: {
+            'hack.party game board': {
+              game: {
+                players: [
+                  {
+                    index: 0,
+                    name: 'Morty',
+                    score: 1,
+                    team: undefined
+                  },
+                  {
+                    index: 1,
+                    name: 'noob noob',
+                    score: 2,
+                    team: undefined
+                  },
+                  {
+                    index: 2,
+                    name: 'Rick',
+                    score: 3,
+                    team: undefined
+                  }
+                ]
+              }
+            }
+          },
+          stubActions: false
+        })]
+      }
+    })
+  })
+  it('renders with players in reverse order by score', async () => {
+    const currentPlayer = await wrapper.vm.currentPlayer
+    expect(currentPlayer).toBe('Morty')
+  })
+})
+
+describe('SnackTrackRoundLowScore', () => {
+  let wrapper
+
+  beforeEach(() => {
+    wrapper = mount(SnackTrackRound, {
+      props: {
+        tracks: ['/sounds/1.mp3', '/sounds/2.mp3', 'sounds/3.mp3'],
+        items: ['Right', 'Wrong'],
+        winnerIndex: 0,
+        answer: 'Super Max by the Pit Stop Boys',
+        playerOrder: 'button'
+      },
+      global: {
+        plugins: [createTestingPinia({
+          initialState: {
+            'hack.party game board': {
+              game: {
+                players: [
+                  {
+                    index: 0,
+                    name: 'Morty',
+                    score: 1,
+                    team: undefined
+                  },
+                  {
+                    index: 1,
+                    name: 'noob noob',
+                    score: 2,
+                    team: undefined
+                  },
+                  {
+                    index: 2,
+                    name: 'Rick',
+                    score: 3,
+                    team: undefined
+                  }
+                ]
+              }
+            }
+          },
+          stubActions: false
+        })]
+      }
+    })
+  })
+  it('renders with players in button order', async () => {
+    const currentPlayer = await wrapper.vm.currentPlayer
+    expect(currentPlayer).toBe('Morty')
+  })
+})

@@ -1,6 +1,6 @@
 <template lang='pug'>
 GameSlide(:dataState='dataState')
-  PlayersSidebar(:players='players')
+  PlayersSidebar(:players='playersToDisplay')
   GameContent
     template(v-slot:header)
       slot(name='header')
@@ -26,6 +26,10 @@ export default {
     GameContent
   },
   props: {
+    players: {
+      type: Array,
+      default: null
+    },
     dataState: {
       type: String,
       default: null
@@ -33,14 +37,18 @@ export default {
   },
   computed: {
     ...mapGetters(useGameStore, ['getPlayersByScore']),
-    players () {
-      const players = this.getPlayersByScore
+    playersToDisplay () {
+      if (this.players === null) {
+        const players = this.getPlayersByScore
 
-      players.forEach((player) => {
-        player.value = player.score
-      })
+        players.forEach((player) => {
+          player.value = player.score
+        })
 
-      return players
+        return players
+      } else {
+        return this.players
+      }
     }
   }
 }

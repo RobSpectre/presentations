@@ -29,6 +29,7 @@ describe('GameContentWithSidebar', () => {
     wrapper = mount(GameContentWithSidebar, {
       global: {
         plugins: [createTestingPinia({
+          stubActions: false,
           initialState: {
             'hack.party game board': {
               game: {
@@ -61,7 +62,7 @@ describe('GameContentWithSidebar', () => {
   })
 
   it('renders with players', async () => {
-    const players = await wrapper.vm.players
+    const players = await wrapper.vm.playersToDisplay
     expect(players).toStrictEqual([
       { name: 'Rick', value: 0, score: 0, index: 2, team: undefined },
       { name: 'noob noob', value: 0, score: 0, index: 1, team: undefined },
