@@ -31,6 +31,13 @@ export default {
 </script>
 
 <style lang='scss'>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap);
+
+.nintendo {
+  font-family: 'Press Start 2P', cursive !important;
+  @apply mt-72 text-9xl text-white #{!important};
+}
+
 html {
   font-size: 36px;
 }
