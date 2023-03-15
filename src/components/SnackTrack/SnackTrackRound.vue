@@ -201,8 +201,8 @@ export default {
     reverse (array) {
       const output = []
 
-      while (array.length) {
-        output.push(array.pop())
+      for (var i = array.length - 1; i > -1; i--) {
+        output.push(array[i])
       }
 
       return output

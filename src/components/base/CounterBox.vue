@@ -2,6 +2,8 @@
 .rounded-lg.bg-blue.text-white
   .text-sm.uppercase.font-semibold {{ label }}
   .text-6xl.counter {{ counter }}
+  .text-sm.uppercase.font-semibold
+     slot(name='footer')
 </template>
 
 <script>

@@ -5,6 +5,7 @@
       img.m-0.w-full.clear-reveal.object-cover(:src='headerImage' alt='')
     .flex-1.bg-white.p-6.flex.flex-col.justify-between
       .flex-1
+        slot(name='interstitial')
         span.block.text-lg.leading-7.font-semibold.text-gray-900.uppercase
         | {{ question }}
         .my-2.text-center.flex.flex-col
