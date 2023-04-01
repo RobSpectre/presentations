@@ -66,7 +66,11 @@ export default {
       return messages
     },
     correspondent () {
-      return this.messages.filter(message => message.username !== this.currentUser)[0].username
+      if (this.messages.filter(message => message.username !== this.currentUser).length > 0) {
+        return this.messages.filter(message => message.username !== this.currentUser)[0].username
+      } else {
+        return this.messages[0].username
+      }
     },
     processedRooms () {
       const rooms = [{ roomId: 1, roomName: this.correspondent }]
