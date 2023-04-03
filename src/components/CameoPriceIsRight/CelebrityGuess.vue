@@ -60,7 +60,10 @@ export default {
     celebrity: String,
     image: String,
     price: Number,
-    prize: Number,
+    prize: {
+      type: Number,
+      default: 1
+    },
     denomination: {
       type: String,
       default: '$'
