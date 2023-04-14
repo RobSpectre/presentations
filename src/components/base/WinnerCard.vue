@@ -18,7 +18,9 @@
         span.block.my-4.uppercase.text-6xl.font-semibold.leading-6.text-white(v-for="winner in winners")
           | {{ winner }}
         .mt-2
-          p.text-xl.leading-5.text-white.uppercase
+          p.text-xl.leading-5.text-white.uppercase(v-if="answer !== ''")
+            | {{ answer }}
+          p.text-xl.leading-5.text-white.uppercase(v-else)
             | {{ answerName }} is {{ answerValue }}.
 </template>
 
@@ -29,8 +31,18 @@ export default {
   name: 'WinnerCard',
   props: {
     winners: Array,
-    answerName: String,
-    answerValue: String,
+    answer: {
+      type: String,
+      default: ''
+    },
+    answerName: {
+      type: String,
+      default: 'Answer'
+    },
+    answerValue: {
+      type: String,
+      default: 'correct'
+    },
     headerImage: {
       type: String,
       default: '/images/winner_winner_chicken_dinner.png'

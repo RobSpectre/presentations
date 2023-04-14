@@ -7,7 +7,13 @@
       img.h-48.w-96.object-cover(:src='headerImage' alt='' v-if='constrainHeaderImage')
       img.object-cover(:src='headerImage' alt='' v-else)
       .mt-3.text-white.flex.flex-col(class='sm:mt-5').justify-evenly
-        span.block.my-4.uppercase.text-6xl.font-semibold.leading-snug.text-white
+        span.block.my-4.uppercase.text-6xl.font-semibold.leading-snug.text-white(
+          v-if="answer !== ''"
+        )
+          | {{ answer }}
+        span.block.my-4.uppercase.text-6xl.font-semibold.leading-snug.text-white(
+          v-else
+        )
           | {{ answerName }} is {{ answerValue }}
 </template>
 
@@ -18,8 +24,18 @@ export default {
   name: 'LoserCard',
   props: {
     losers: Array,
-    answerName: String,
-    answerValue: String,
+    answer: {
+      type: String,
+      default: ''
+    },
+    answerName: {
+      type: String,
+      default: 'Answer'
+    },
+    answerValue: {
+      type: String,
+      default: 'correct'
+    },
     headerImage: {
       type: String,
       default: '/images/loser.gif'
