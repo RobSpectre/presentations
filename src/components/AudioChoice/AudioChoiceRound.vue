@@ -2,6 +2,8 @@
 GameSlide(v-if='game.players.length > 0')
   PlayersSidebar(:players='players')
   GameContent
+    template(v-slot:header)
+      slot(name='header')
     template(v-slot:content)
       AudioPlayer(
         :src='src'

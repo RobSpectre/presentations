@@ -8,6 +8,7 @@ ItemGuess(
   :winnerIndex='winnerIndex'
   :prize='prize'
   :question='question'
+  :headerImage='headerImage'
 )
 </template>
 
@@ -25,7 +26,11 @@ export default {
     items: Array,
     winnerIndex: Number,
     prize: Number,
-    question: String
+    question: String,
+    headerImage: {
+      default: '/images/which_is_which_cover.jpg',
+      type: String
+    }
   }
 }
 </script>
