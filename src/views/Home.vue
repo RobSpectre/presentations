@@ -230,7 +230,10 @@ Reveal
       h1 Free and Five Minutes
     BackgroundImageSlide(background='/images/headroom_demo_tour.png')
       h1 Free and Five Minutes
-    BackgroundImageSlide(background='/images/earkick_test_results.png')
+    VideoSlide(
+      background='/video/earkick.mp4'
+      :muted='false'
+    )
       h1 Free, Frictionless, and Five Minutes
     VideoSlide(background='/video/twilio_ftu.mp4')
       h1 Progressive Delight
