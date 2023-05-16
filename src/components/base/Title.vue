@@ -2,22 +2,16 @@
 VideoSlide(
   v-if='backgroundType === "video"'
   :background='background'
+  :muted='muted'
 )
   .h-full.flex.items-center.justify-center
-    img(
-      v-if='headingType === "image"'
-      class='titleLogo'
-      :src='heading'
-    )
-    h2(v-else class='titleLogo') {{ heading }}
-BackgroundImageSlide(v-else)
-  div(class='flex h-full')
-    img(
-      v-if='headingType === "image"'
-      class='titleLogo'
-      :src='heading'
-    )
-    h2(v-else class='titleLogo') {{ heading }}
+    slot(name='title')
+BackgroundImageSlide(
+  v-else
+  :background='background'
+)
+  .h-full.flex.items-center.justify-center
+    slot(name='title')
 </template>
 
 <script>
@@ -39,13 +33,9 @@ export default {
       type: String,
       default: 'video'
     },
-    heading: {
-      type: String,
-      default: '/images/hackparty_logo.png'
-    },
-    headingType: {
-      type: String,
-      default: 'image'
+    muted: {
+      type: Boolean,
+      default: true
     }
   }
 }

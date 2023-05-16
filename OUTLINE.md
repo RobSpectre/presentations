@@ -1,0 +1,69 @@
+# The Most Important Moat
+
+- Intro
+  - Moats
+  - Technical moats have never been harder
+  - Customer moats have never been easier
+  - Unfair trend advantage
+- Metrics Maturity
+  - Pyramid model
+    - The Force
+    - Data
+    - Information
+    - Knowledge
+    - Wisdom
+  - Honest assessment
+  - Buy your way to the next level
+  - Hard truth
+    - They cost a lot
+    - They all have terrible UI
+    - Integration is error prone
+    - Here are the best:
+      - Heap (Future Proof)
+      - Google Analytics 360 (Training resources)
+      - Omniture (Adobe Analytics) (Ease of recruitment)
+- Find the Leading Indicator through segmentation
+  - The majority of your customers are doing one thing on your site before
+    becoming a paying customer
+  - Use segmentation to find that group
+  - Example: twilio.com/docs
+  - Every site is different, but this group does exist. Find it.
+  - Watch a few go through this routine and instrument incrementally
+- Get Your Product In That Segments Hands 
+  - 3 Fs
+    - Free
+    - Frictionless
+    - Five Minute First-Time-Use
+  - Delight first, transact next
+  - Example
+    - !Worked: AssemblyAI
+    - Worked: ElevenLabs
+  - This requires creativity, especially for this group
+  - Examples:
+    - Synthesia
+    - Headroom
+    - Earkick
+- Funnels Qualify, Moats Close
+  - Funnels leak, moats grow
+  - Funnels are a model of progressive categorization 
+  - Networks are a model of marketshare capture 
+  - Halos
+  - Qualification pushes the boulder uphill
+  - Closing pushes the boulder downhill
+- Let the customers pour water in the moat 
+  - If a customer is raving about your product in their office, does the world
+    hear it?
+  - Make it easy for them to grow the moat
+  - Kickback / Amazon gift card / etc is low effort
+  - Recognition > Renumeration
+    - Example: Twilio
+  - Peer education is pouring water in the moat
+      - Example:
+        - !Worked: Stable Diffusion
+        - Worked: Midjourney
+- Outro
+  - Buy up in metrics maturity
+  - Find the segment leading to purchase
+  - Get them the product with 3 Fs
+  - Make a machine that closes deals, not categorizes email addresses 
+  - Invite your customes on the journey
