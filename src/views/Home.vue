@@ -57,29 +57,29 @@ Reveal
       .slide-headline It is the hardest time
       .slide-headline
         | to build a
-        span.text-blue data
-        | moat
+        span.text-blue  data
+        |  moat
     Slide(class='darkgray')
       .slide-headline It is the hardest time
       .slide-headline
         | to build a
-        span.text-blue tech
-        | moat
+        span.text-blue  tech
+        |  moat
     Slide(class='darkgray')
       .slide-headline It is the hardest time
       .slide-headline
         | to build an
-        span.text-blue IP
-        | moat
+        span.text-blue  IP
+        |  moat
     Slide(class='darkgray')
       .slide-headline
         | It is the
-        span.text-green easiest
-        | time
+        span.text-green  easiest
+        |  time
       .slide-headline
         | to build a
-        span.text-green customer
-        | moat
+        span.text-green  customer
+        |  moat
     BackgroundImageSlide(background='/images/airline.gif')
       h1 Their customers
     BackgroundImageSlide(background='/images/crowd.gif')
@@ -140,7 +140,7 @@ Reveal
         span.text-red-800  error prone
       .slide-headline.fragment
         span.text-red-800 No one
-        | in your org
+        |  in your org
         span.text-red-800  wants to do it
       h1 State of Cross Platform Analytics
     BackgroundImageSlide(background='/images/leaking.gif')
@@ -239,7 +239,7 @@ Reveal
     Slide(class='green')
       .slide-headline
         | This digs the
-        span.text-black moat
+        span.text-black  moat
     Slide
       img(src='/images/pyramid.png')
       h1 Get The Visibility
@@ -253,7 +253,7 @@ Reveal
     Slide(class='green')
       .slide-headline
         | Next up is
-        span.text-black filling it
+        span.text-black  filling it
     Title(
       background='/video/zelda_moat.mp4'
       :muted='true'
