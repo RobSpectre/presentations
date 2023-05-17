@@ -38,7 +38,6 @@ Reveal
       :muted='true'
     )
       template(v-slot:title)
-        .title The Moat That Matters
         .footer
           ul.list-outside(style='list-style-type: none;')
             li
@@ -80,6 +79,24 @@ Reveal
         | to build a
         span.text-green  customer
         |  moat
+    Slide(class='darkgray')
+      .slide-headline
+        | It is the
+        span.text-green  cheapest 
+        |  time
+      .slide-headline
+        | to build a
+        span.text-green  customer 
+        |  moat
+    Slide(class='darkgray')
+      .slide-headline
+        | It is the
+        span.text-green  most important 
+        |  time
+      .slide-headline
+        | to build a
+        span.text-green  customer
+        |  moat
     BackgroundImageSlide(background='/images/airline.gif')
       h1 Their customers
     BackgroundImageSlide(background='/images/crowd.gif')
@@ -89,6 +106,7 @@ Reveal
       :muted='true'
     )
       template(v-slot:title)
+        .title The Moat That Matters
         .footer
           ul.list-outside(style='list-style-type: none;')
             li
@@ -164,13 +182,13 @@ Reveal
         | Leads To Your
         span.text-green  customer
     BackgroundImageSlide(background='/images/inspect.gif')
+    BackgroundImageSlide(background='/images/sorting.gif')
+      h1 Sorting by Behaviour
     Slide(class='darkgray')
       .w-screen
         .flex.items-center.justify-center
           img(class='w-1/2 h-auto' src='/images/pareto_principle.png')
       h1 The Pareto Principle
-    BackgroundImageSlide(background='/images/sorting.gif')
-      h1 Sorting by Behaviour
     BackgroundImageSlide(background='/images/twilio_docs.png')
       h1 Example
     BackgroundImageSlide(background='/images/boring.gif')
@@ -212,7 +230,8 @@ Reveal
       .slide-headline.fragment
         span.text-black Frictionless
       .slide-headline.fragment
-        span.text-black Five Minute First Time Use
+        span.text-black Five Minutes
+      h1 First Time Use
     BackgroundImageSlide(background='/images/delight.gif')
       h1 Surprise and Delight First
     Slide
