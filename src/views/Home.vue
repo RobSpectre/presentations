@@ -2,21 +2,6 @@
 Reveal
   .slides
     Title(
-      background='/video/north_side_gal.mp4'
-      :muted='false'
-    )
-      template(v-slot:title)
-        .title The Moat That Matters
-        .footer
-          ul.list-outside(style='list-style-type: none;')
-            li
-              img(
-                src='/images/childsafeai/png/green_and_white/childsafe-logo-gw-slim-h@tight.png'
-              )
-            li Rob Spectre
-            li rob@childsafe.ai
-    Title(
-      background='/video/zelda_moat.mp4'
       :muted='true'
     )
       template(v-slot:title)
@@ -29,10 +14,6 @@ Reveal
               )
             li Rob Spectre
             li rob@childsafe.ai
-    VideoSlide(
-      background='/video/almost_the_end_of_the_show.mp4'
-      :muted='false'
-    )
     Title(
       background='/video/zelda_moat.mp4'
       :muted='true'
